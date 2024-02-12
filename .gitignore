@@ -17,3 +17,6 @@ manifest.mf
 .externalNativeBuild
 .cxx
 local.properties
+/netbeans/nbproject/private/
+/netbeans/build/
+/netbeans/dist/
