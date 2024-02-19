@@ -10,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         
+        // Just added to see if the change works... Divash
+        
         // test database connectivity; get DAOs
 
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
