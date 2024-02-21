@@ -12,6 +12,7 @@ public class Main {
         
         // Just added to see if the change works... Divash
         // Just added to see if the changes work... Rijesh
+        // comment Bri
         
         // test database connectivity; get DAOs
 
