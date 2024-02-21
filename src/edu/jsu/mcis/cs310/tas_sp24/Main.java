@@ -15,7 +15,7 @@ public class Main {
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         
-        // find badge
+        // find badge //hello
 
         Badge b = badgeDAO.find("C4F37EFF");
         
