@@ -22,7 +22,7 @@ public class Main {
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         
-        // find badge //hello
+        // find badge //hello world
 
         Badge b = badgeDAO.find("C4F37EFF");
         
