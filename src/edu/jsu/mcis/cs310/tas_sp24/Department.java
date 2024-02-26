@@ -28,7 +28,7 @@ public class Department {
         StringBuilder sb = new StringBuilder();
         
         sb.append("#").append(numericid).append(" (").append(description).append("), ");
-        sb.append("Terminal Id: ").append(terminalid);
+        sb.append("Terminal ID: ").append(terminalid);
         
         return sb.toString();
     }
