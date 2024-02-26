@@ -16,7 +16,8 @@ public class Main {
         
         // Just added to see if the change works... Divash
         // Just added to see if the changes work... Rijesh
-        //Test Committ Again - Daniel BLair.. test test test
+        //Test Committ Again - Daniel BLair
+        //Test commit Bri
         
         // test database connectivity; get DAOs
 
