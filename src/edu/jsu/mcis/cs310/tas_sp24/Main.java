@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.time.format.DateTimeFormatter;
 
 
-//Test Commit Comment - Daniel Blair
+
 
 
 public class Main {
@@ -16,6 +16,8 @@ public class Main {
         
         // Just added to see if the change works... Divash
         // Just added to see if the changes work... Rijesh
+        //Test Committ Again - Daniel BLair
+        //Test commit Bri
         
         // test database connectivity; get DAOs
 
