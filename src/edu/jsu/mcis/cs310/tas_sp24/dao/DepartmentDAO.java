@@ -33,7 +33,7 @@ public class DepartmentDAO {
                     int terminalid = rs.getInt("terminaid");
                     String description = rs.getString("description");
                     
-                    department = new Department(numericid, terminalid, description);
+                    department = new Department(terminalid, description, numericid);
                 }
             }
         } catch (SQLException e) {
