@@ -1,49 +1,46 @@
 
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-/**
- *
- * @author djbla
- */
+
 public class Employee {
     //Create the needed variables
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
+    private final String firstname;
+    private final String middlename;
+    private final String lastname;
     private final Integer id;
-    private final LocalDateTime current;
+    private final LocalDateTime active;
     private final EmployeeType employeeType;
     private final Badge badge; 
     private final Shift shift; //Need to implement shift class to work
-    private final Department department; //Need to implement Department class
+    private final Department department; 
     
-    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime current, Badge badge, Department department, Shift shift, EmployeeType employeeType){
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
+    // Set variables to active versions
+    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
+        this.firstname = firstName;
+        this.middlename = middleName;
+        this.lastname = lastName;
         this.id = id;
-        this.current = current;
+        this.active = active;
         this.employeeType = employeeType;
         this.badge = badge;
         this.shift = shift;
         this.department = department;
     }
-    
+    //Get functions
     public String getFirstName(){
-        return firstName;
+        return firstname;
     }
     public String getMiddleName(){
-        return middleName;
+        return middlename;
     }   
     public String getLastName(){
-        return lastName;
+        return lastname;
     }
     public Integer getId(){
         return id;
     }
-    public LocalDateTime getCurrent(){
-        return current;     
+    public LocalDateTime getActive(){
+        return active;     
     }
     public EmployeeType getEmployeeType(){
         return employeeType;
@@ -54,8 +51,18 @@ public class Employee {
     public Shift getShift(){ // waiting on shift implementation
         return shift;
     }
-    public Department getDepartment(){ // waiting on department implementation
+    public Department getDepartment(){ 
         return department;
     }
+    
+   @Override
+   public String toString(){
+        StringBuilder s = new StringBuilder();
+         s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename).append(" (#").append(badge.getId()).append("), Type: ") 
+                  .append(employeeType).append(", Department: ").append(department.getDescription()).append(", Active: ");
+
+
+      
+   }
         
 }

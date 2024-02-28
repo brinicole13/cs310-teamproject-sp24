@@ -1,6 +1,10 @@
 package edu.jsu.mcis.cs310.tas_sp24.dao;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import edu.jsu.mcis.cs310.tas_sp24.Employee;
 import edu.jsu.mcis.cs310.tas_sp24.EmployeeType;
 import edu.jsu.mcis.cs310.tas_sp24.Badge;
@@ -8,10 +12,7 @@ import edu.jsu.mcis.cs310.tas_sp24.Shift;
 import edu.jsu.mcis.cs310.tas_sp24.Department;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author djbla
- */
+
 public class EmployeeDAO {
     
     private static final String FIND_ID = "SELECT * FROM employee WHERE id = ?";
@@ -34,29 +35,29 @@ public class EmployeeDAO {
             
             //Verify connection
             if(conn.isValid(0)){
-                ps = conn.prepareStatment(FIND_ID);
+                ps = conn.prepareStatement(FIND_ID);
                 ps.setInt(1, id);
                 
                 boolean hasReults = ps.execute();
                 
                 if(hasReults){
-                    rs = ps.getReultSet();
+                    rs = ps.getResultSet();
                     
                     while(rs.next()){
                         BadgeDAO badgeDAO = new BadgeDAO(daoFactory);
                         ShiftDAO shiftDAO = new ShiftDAO(daoFactory); // Need to implement shift still
-                        DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); // Need to implement department still
+                        DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); 
                         //Still need to implement a formatting option for date and time
                         
-                        String firstName = rs.getString("firstname");
-                        String middleName = rs.getString("middlename");
-                        String lastName = rs.getString("lastname");
+                        String firstname = rs.getString("firstname");
+                        String middlename = rs.getString("middlename");
+                        String lastname = rs.getString("lastname");
                         Badge badge = badgeDAO.find(rs.getString("badgeid"));
-                        Department department = departmentDAO.find(rs.getInt("departmentid")); //Still need to implement department
+                        Department department = departmentDAO.find(rs.getInt("departmentid")); 
                         Shift shift = shiftDAO.find(badge); // Still need to implement shift
                         EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
 
-                        employee = new Employee(id, firstName, middleName, lastName, badge, department, shift, employeeType);
+                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
                         
                     }
                 }
@@ -85,44 +86,42 @@ public class EmployeeDAO {
 
 //Find employee based off their badge ID
  public Employee find(Badge badge) {
-    Employee employee = null;
+        Employee employee = null;
 
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-      try {
+        try {
 
-        Connection conn = daoFactory.getConnection();
+            Connection conn = daoFactory.getConnection();
 
-        if (conn.isValid(0)) {
+            if (conn.isValid(0)) {
 
-            ps = conn.prepareStatement(FIND_BADGE);
-            ps.setString(1, badge.getId());
+                ps = conn.prepareStatement(FIND_BADGE);
+                ps.setString(1, badge.getId());
 
-            boolean hasResults = ps.execute();
+                boolean hasresults = ps.execute();
 
-            if (hasResults) {
+                if (hasresults) {
 
-                rs = ps.getResultSet();
+                    rs = ps.getResultSet();
 
-                while (rs.next()) {
-                    ShiftDAO shiftDAO = new ShiftDAO(daoFactory); // Need to implement Shift
-                    DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); // Need to implement Department
-                    // Meed to implement some kind of date and time format
+                    while (rs.next()) {
+                        ShiftDAO shiftDAO = new ShiftDAO(daoFactory);
+                        DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory);
 
-                    int id = rs.getInt("id");
-                    String firstName = rs.getString("firstname");
-                    String middleName = rs.getString("middlename");
-                    String lastName = rs.getString("lastname");
-                
+                        int id = rs.getInt("id");
+                        String firstname = rs.getString("firstname");
+                        String middlename=rs.getString("middlename");
+                        String lastname = rs.getString("lastname");
 
-                    Department department = departmentDAO.find(rs.getInt("departmentid"));
-                    Shift shift = shiftDAO.find(rs.getInt("shiftid"));
-                    EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
+                        Department department = departmentDAO.find(rs.getInt("departmentid"));
+                        Shift shift = shiftDAO.find(rs.getInt("shiftid"));
+                        EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
 
 
-                    employee = new Employee(id, firstName, middleName, lastName, badge, department, shift, employeeType);
-                   
+                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
+                    }
                 }
             }
 
@@ -149,4 +148,3 @@ public class EmployeeDAO {
         return employee;
     }
 }
-
