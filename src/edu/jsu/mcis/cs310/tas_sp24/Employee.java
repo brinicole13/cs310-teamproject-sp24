@@ -1,4 +1,3 @@
-
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
 
@@ -15,7 +14,9 @@ public class Employee {
     private final Department department; 
     
     // Set variables to active versions
-    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
+    public Employee(int id, String firstName, String middleName, String lastName,
+    LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
+        
         this.firstname = firstName;
         this.middlename = middleName;
         this.lastname = lastName;
@@ -25,6 +26,7 @@ public class Employee {
         this.badge = badge;
         this.shift = shift;
         this.department = department;
+        
     }
     //Get functions
     public String getFirstName(){
