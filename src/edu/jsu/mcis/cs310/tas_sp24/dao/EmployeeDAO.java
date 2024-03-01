@@ -13,7 +13,6 @@ import edu.jsu.mcis.cs310.tas_sp24.Shift;
 import edu.jsu.mcis.cs310.tas_sp24.Department;
 import java.time.LocalDateTime;
 
-
 public class EmployeeDAO {
     
     private static final String FIND_ID = "SELECT * FROM employee WHERE id = ?";

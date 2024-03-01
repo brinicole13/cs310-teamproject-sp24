@@ -1,7 +1,5 @@
-
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
-
 
 public class Employee {
     //Create the needed variables
