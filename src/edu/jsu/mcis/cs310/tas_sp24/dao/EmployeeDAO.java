@@ -39,12 +39,12 @@ public class EmployeeDAO {
                 ps = conn.prepareStatement(FIND_ID);
                 ps.setInt(1, id);
                 
-                boolean hasReults = ps.execute();
+                boolean hasResults = ps.execute();
                 
-                if(hasReults){
+                if(hasResults){
                     rs = ps.getResultSet();
                     
-                    while(rs.next()){
+                    while(rs.next()) {
                         BadgeDAO badgeDAO = new BadgeDAO(daoFactory);
                         ShiftDAO shiftDAO = new ShiftDAO(daoFactory); 
                         DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); 
@@ -68,18 +68,19 @@ public class EmployeeDAO {
                 }
               
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         }finally {
-            if (rs != null){
-                try { rs.close();
-            }catch (SQLException e){
+            if (rs != null) {
+                try {
+                      rs.close();
+            } catch (SQLException e) {
                 throw new DAOException(e.getMessage());
             }
         }
         if (ps != null){
             try {
-                rs.close();
+                ps.close();
             } catch(SQLException e){
                 throw new DAOException(e.getMessage());
             }
