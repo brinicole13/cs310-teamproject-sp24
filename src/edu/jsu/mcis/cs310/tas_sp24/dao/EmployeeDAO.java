@@ -38,6 +38,44 @@ public class EmployeeDAO {
                 ps = conn.prepareStatement(FIND_ID);
                 ps.setInt(1, id);
                 
+                boolean hasReults = ps.execute();
+                
+                if(hasReults){
+                    rs = ps.getResultSet();
+                    
+                    while(rs.next()){
+                        BadgeDAO badgeDAO = new BadgeDAO(daoFactory);
+                        ShiftDAO shiftDAO = new ShiftDAO(daoFactory); // Need to implement shift still
+                        DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); 
+                        //Still need to implement a formatting option for date and time
+                        
+                        String firstname = rs.getString("firstname");
+                        String middlename = rs.getString("middlename");
+                        String lastname = rs.getString("lastname");
+                        Badge badge = badgeDAO.find(rs.getString("badgeid"));
+                        Department department = departmentDAO.find(rs.getInt("departmentid")); 
+                        Shift shift = shiftDAO.find(badge); // Still need to implement shift
+                        EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
+
+                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
+                        
+                    }
+                }
+              
+            }
+        } catch (SQLException e){
+            throw new DAOException(e.getMessage());
+        }finally {
+            if (rs != null){
+                try { rs.close();
+            }catch (SQLException e){
+                throw new DAOException(e.getMessage());
+            }
+        }
+        if (ps != null){
+            try {
+                rs.close();
+
                 boolean hasResults = ps.execute();
                 
                 if(hasResults){

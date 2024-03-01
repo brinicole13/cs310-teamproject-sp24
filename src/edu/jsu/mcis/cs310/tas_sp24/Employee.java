@@ -55,7 +55,7 @@ public class Employee {
         return department;
     }
     
-  @Override
+ @Override
     public String toString() {
     StringBuilder s = new StringBuilder();
     s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename)
@@ -63,5 +63,5 @@ public class Employee {
             .append(department.getDescription()).append(", Active: ").append(active);
     return s.toString();
     }
-
+    
 }
