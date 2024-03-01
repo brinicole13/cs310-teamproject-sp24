@@ -1,5 +1,6 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
+import edu.jsu.mcis.cs310.tas_sp24.dao.ShiftDAO;
 import edu.jsu.mcis.cs310.tas_sp24.dao.*;
 import java.util.*;
 import org.junit.*;

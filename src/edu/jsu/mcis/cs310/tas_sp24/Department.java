@@ -5,7 +5,7 @@ public class Department {
     private final String description;
     private final int numericid;
     
-    public Department(int terminalid, String description, int numericid){
+    public Department(int numericid, String description, int terminalid){
        this.terminalid = terminalid;
        this.description = description;
        this.numericid = numericid;
@@ -28,7 +28,7 @@ public class Department {
         StringBuilder sb = new StringBuilder();
         
         sb.append("#").append(numericid).append(" (").append(description).append("), ");
-        sb.append("Terminal Id: ").append(terminalid);
+        sb.append("Terminal ID: ").append(terminalid);
         
         return sb.toString();
     }

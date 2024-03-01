@@ -30,10 +30,10 @@ public class DepartmentDAO {
                 rs = ps.executeQuery();
                 
                 if (rs.next()) {
-                    int terminalid = rs.getInt("terminaid");
+                    int terminalid = rs.getInt("terminalid");
                     String description = rs.getString("description");
                     
-                    department = new Department(numericid, terminalid, description);
+                    department = new Department(numericid, description,terminalid);
                 }
             }
         } catch (SQLException e) {
