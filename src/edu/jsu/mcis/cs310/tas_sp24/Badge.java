@@ -1,5 +1,6 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
+
 public class Badge {
 
     public final String id;
