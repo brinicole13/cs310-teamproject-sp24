@@ -55,14 +55,13 @@ public class Employee {
         return department;
     }
     
-   @Override
-   public String toString(){
-        StringBuilder s = new StringBuilder();
-         s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename).append(" (#").append(badge.getId()).append("), Type: ") 
-                  .append(employeeType).append(", Department: ").append(department.getDescription()).append(", Active: ");
+  @Override
+    public String toString() {
+    StringBuilder s = new StringBuilder();
+    s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename)
+            .append(" (#").append(badge.getId()).append("), Type: ").append(employeeType).append(", Department: ")
+            .append(department.getDescription()).append(", Active: ").append(active);
+    return s.toString();
+    }
 
-
-      
-   }
-        
 }
