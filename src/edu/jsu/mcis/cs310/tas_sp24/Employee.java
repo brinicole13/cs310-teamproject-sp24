@@ -15,7 +15,9 @@ public class Employee {
     private final Department department; 
     
     // Set variables to active versions
-    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
+    public Employee(int id, String firstName, String middleName, String lastName,
+    LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
+        
         this.firstname = firstName;
         this.middlename = middleName;
         this.lastname = lastName;
@@ -25,6 +27,7 @@ public class Employee {
         this.badge = badge;
         this.shift = shift;
         this.department = department;
+        
     }
     //Get functions
     public String getFirstName(){
@@ -58,11 +61,13 @@ public class Employee {
    @Override
    public String toString(){
         StringBuilder s = new StringBuilder();
-         s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename).append(" (#").append(badge.getId()).append("), Type: ") 
-                  .append(employeeType).append(", Department: ").append(department.getDescription()).append(", Active: ");
-
-
+        //Format based on test class
+        s.append("ID #:").append(id).append(" ").append(lastname).append(", ")
+        .append(firstname).append(" ").append(middlename).append(" (").append(badge)
+        .append("), ").append("Type: ").append(employeeType).append(", Department: ")
+        .append(department).append(", Active: ").append(active);
       
+        return s.toString();
    }
         
 }

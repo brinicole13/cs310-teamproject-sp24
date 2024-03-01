@@ -7,7 +7,7 @@ import edu.jsu.mcis.cs310.tas_sp24.Badge;
 public class ShiftDAO {
 
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM shift WHERE id = ?";
-    private static final String QUERY_FIND_BY_EMPLOYEE_ID = "SELECT * FROM shift WHERE id = ?";
+    private static final String QUERY_FIND_BY_EMPLOYEE_ID = "SELECT * FROM shift WHERE badge = ?";
     
     private final DAOFactory daoFactory;
 
@@ -46,7 +46,7 @@ public class ShiftDAO {
         try {
             Connection conn = daoFactory.getConnection();
             ps = conn.prepareStatement(QUERY_FIND_BY_EMPLOYEE_ID);
-            ps.setInt(1, employeeId);
+            ps.setString(1, badge.getId());
             rs = ps.executeQuery();
             
             if (rs.next()) {

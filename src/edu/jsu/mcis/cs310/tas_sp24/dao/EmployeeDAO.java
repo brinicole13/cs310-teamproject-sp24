@@ -1,6 +1,7 @@
 package edu.jsu.mcis.cs310.tas_sp24.dao;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,19 +46,23 @@ public class EmployeeDAO {
                     
                     while(rs.next()){
                         BadgeDAO badgeDAO = new BadgeDAO(daoFactory);
-                        ShiftDAO shiftDAO = new ShiftDAO(daoFactory); // Need to implement shift still
+                        ShiftDAO shiftDAO = new ShiftDAO(daoFactory); 
                         DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory); 
                         //Still need to implement a formatting option for date and time
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                         
                         String firstname = rs.getString("firstname");
                         String middlename = rs.getString("middlename");
                         String lastname = rs.getString("lastname");
                         Badge badge = badgeDAO.find(rs.getString("badgeid"));
                         Department department = departmentDAO.find(rs.getInt("departmentid")); 
-                        Shift shift = shiftDAO.find(badge); // Still need to implement shift
+                        Shift shift = shiftDAO.find(badge); 
                         EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
+                        LocalDateTime active = LocalDateTime.parse(rs.getString("active"), formatter);
+                        
+                        employee = new Employee(id, firstname, middlename, lastname, active, badge, department, shift, employeeType);
 
-                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
+                       
                         
                     }
                 }
@@ -109,6 +114,7 @@ public class EmployeeDAO {
                     while (rs.next()) {
                         ShiftDAO shiftDAO = new ShiftDAO(daoFactory);
                         DepartmentDAO departmentDAO = new DepartmentDAO(daoFactory);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                         int id = rs.getInt("id");
                         String firstname = rs.getString("firstname");
@@ -118,9 +124,10 @@ public class EmployeeDAO {
                         Department department = departmentDAO.find(rs.getInt("departmentid"));
                         Shift shift = shiftDAO.find(rs.getInt("shiftid"));
                         EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
+                        LocalDateTime active = LocalDateTime.parse(rs.getString("active"), formatter);
 
 
-                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
+                        employee = new Employee(id, firstname, middlename, lastname, active, badge, department, shift, employeeType);
                     }
                 }
             }
