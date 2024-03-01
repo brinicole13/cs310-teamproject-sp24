@@ -2,7 +2,8 @@ package edu.jsu.mcis.cs310.tas_sp24;
 
 public class Badge {
 
-    private final String id, description;
+    public final String id;
+    private final String description;
 
     public Badge(String id, String description) {
         this.id = id;
