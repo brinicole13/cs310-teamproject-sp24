@@ -4,6 +4,7 @@
  */
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author Divash
@@ -95,22 +96,27 @@ public class Punch {
     
    public String printOriginal() {
         StringBuilder s = new StringBuilder();
+        
+        DateTimeFormatter newformat = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
+        
         s.append("#");
         s.append(badge.getId()).append(" ");
         s.append(punchType).append(": ");
-        s.append(originalTimestamp);
+        s.append(originalTimestamp.format(newformat));
 
         return s.toString().toUpperCase();
     }
 
     public String printAdjusted() {
         StringBuilder s = new StringBuilder();
+        
+        DateTimeFormatter newformat = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
 
         // #28DC3FB8 CLOCK IN: FRI 09/07/2018 07:00:00 (Shift Start)
         s.append("#");
         s.append(badge.getId()).append(" ");
         s.append(punchType).append(": ");
-        s.append(adjustedTimestamp);
+        s.append(adjustedTimestamp.format(newformat));
 
         s = new StringBuilder(s.toString().toUpperCase());
         s.append("(").append(adjustmentType).append(")");
