@@ -39,10 +39,10 @@ public class EmployeeDAO {
             
             //Verify connection
             if(conn.isValid(0)){
-                ps = conn.prepareStatement(FIND_ID);
+                ps = conn.prepareStatement(QUERY_FIND_ID);
                 ps.setInt(1, id);
                 
-                boolean hasReults = ps.execute();
+                boolean hasResults = ps.execute();
                 
                 if(hasResults){
                     rs = ps.getResultSet();
@@ -109,26 +109,27 @@ public class EmployeeDAO {
                     }
                 }
               
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e.getMessage());
-        }finally {
-            if (rs != null) {
-                try {
-                      rs.close();
-            } catch (SQLException e) {
+            }catch (SQLException e){
                 throw new DAOException(e.getMessage());
-            }
-        }
-        if (ps != null){
-            try {
-                ps.close();
-            } catch(SQLException e){
-                throw new DAOException(e.getMessage());
+            }finally { 
+                if (rs != null){
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
+                }
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch(SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
+                }
             }
         }
     }
-        return employee;
+    return employee;
     
 }
 
