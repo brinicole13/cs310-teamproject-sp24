@@ -104,7 +104,7 @@ public class EmployeeDAO {
                         Shift shift = shiftDAO.find(badge); // Still need to implement shift
                         EmployeeType employeeType = EmployeeType.values()[rs.getInt("employeetypeid")];
 
-                        employee = employeeType(id, firstname, middlename, lastname, badge, department, shift, employeeType);
+                        employee = new Employee(id, firstname, middlename, lastname, badge, department, shift, employeeType);
                         
                     }
                 }
@@ -134,6 +134,12 @@ public class EmployeeDAO {
 }
 
 //Find employee based off their badge ID
+
+    /**
+     *
+     * @param badge
+     * @return
+     */
  public Employee find(Badge badge) {
         Employee employee = null;
 
