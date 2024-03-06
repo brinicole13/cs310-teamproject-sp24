@@ -1,5 +1,6 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Employee {
     //Create the needed variables
@@ -60,10 +61,11 @@ public class Employee {
  @Override
     public String toString() {
     StringBuilder s = new StringBuilder();
-    s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ").append(middlename)
-            .append(" (#").append(badge.getId()).append("), Type: ").append(employeeType).append(", Department: ")
-            .append(department.getDescription()).append(", Active: ").append(active);
-    return s.toString();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+         s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname)
+                  .append(" ").append(middlename).append(" (#").append(badge.getId()).append("), Type: ") 
+                  .append(employeeType).append(", Department: ").append(department.getDescription()).append(", Active: ").append(active.format(format));
+         return s.toString();
+      
     }
-    
 }
