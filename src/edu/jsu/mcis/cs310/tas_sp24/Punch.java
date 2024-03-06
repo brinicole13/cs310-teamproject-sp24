@@ -1,14 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-/**
- *
- * @author Divash
- */
 
 // Punch class represents a time punch
 public class Punch {
