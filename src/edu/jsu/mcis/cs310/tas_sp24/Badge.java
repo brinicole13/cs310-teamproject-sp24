@@ -1,6 +1,6 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
-// delete once you see this
+
 public class Badge {
 
     public final String id;
