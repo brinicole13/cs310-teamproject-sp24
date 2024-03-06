@@ -1,32 +1,35 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
-import java.sql.Time;
+import java.util.*;
+import java.time.*;
 
 public class Shift {
-
-    private final int id;
     private final String description;
-    private final Time shiftStart;
-    private final Time shiftStop;
+    private final LocalTime startTime;
+    private final LocalTime stopTime;
+    private final LocalTime lunchStart;
+    private final LocalTime lunchStop;
+    private final int id;
     private final int roundInterval;
     private final int gracePeriod;
     private final int dockPenalty;
-    private final Time lunchStart;
-    private final Time lunchStop;
     private final int lunchThreshold;
+    private final Duration lunchDuration;
+    private final Duration shiftDuration;
 
-    public Shift(int id, String description, Time shiftStart, Time shiftStop, int roundInterval, int gracePeriod,
-                 int dockPenalty, Time lunchStart, Time lunchStop, int lunchThreshold) {
-        this.id = id;
-        this.description = description;
-        this.shiftStart = shiftStart;
-        this.shiftStop = shiftStop;
-        this.roundInterval = roundInterval;
-        this.gracePeriod = gracePeriod;
-        this.dockPenalty = dockPenalty;
-        this.lunchStart = lunchStart;
-        this.lunchStop = lunchStop;
-        this.lunchThreshold = lunchThreshold;
+    public Shift(HashMap map) {
+        this.id = Integer.parseInt((String)map.get("id"));
+        this.description = map.get("description").toString();
+        this.startTime = LocalTime.parse((String)map.get("startTime"));
+        this.stopTime = LocalTime.parse((String)map.get("stopTime"));
+        this.lunchStart = LocalTime.parse((String)map.get("lunchStart"));
+        this.lunchStop = LocalTime.parse((String)map.get("lunchStop"));
+        this.roundInterval = Integer.parseInt((String)map.get("roundInterval"));
+        this.gracePeriod = Integer.parseInt((String)map.get("gracePeriod"));
+        this.dockPenalty = Integer.parseInt((String)map.get("dockPenalty"));
+        this.lunchThreshold = Integer.parseInt((String)map.get("lunchThreshold"));
+        this.lunchDuration = Duration.between(lunchStart, lunchStop);
+        this.shiftDuration = Duration.between(startTime, stopTime);
     }
 
     public int getId() {
@@ -37,12 +40,28 @@ public class Shift {
         return description;
     }
 
-    public Time getShiftStart() {
-        return shiftStart;
+    public LocalTime getStartTime() {
+        return startTime;
     }
 
-    public Time getShiftStop() {
-        return shiftStop;
+    public LocalTime getStopTime() {
+        return stopTime;
+    }
+
+    public LocalTime getLunchStart() {
+        return lunchStart;
+    }
+
+    public LocalTime getLunchStop() {
+        return lunchStop;
+    }
+
+    public Duration getLunchDuration() {
+        return lunchDuration;
+    }
+
+    public Duration getShiftDuration() {
+        return shiftDuration;
     }
 
     public int getRoundInterval() {
@@ -57,20 +76,24 @@ public class Shift {
         return dockPenalty;
     }
 
-    public Time getLunchStart() {
-        return lunchStart;
-    }
-
-    public Time getLunchStop() {
-        return lunchStop;
-    }
-
     public int getLunchThreshold() {
         return lunchThreshold;
     }
 
     @Override
     public String toString() {
-        return "Shift " + id + ": " + shiftStart.toString().substring(0, 5) + " - " + shiftStop.toString().substring(0, 5) + " (" + (shiftStop.getTime() - shiftStart.getTime()) / 60000 + " minutes); Lunch: " + lunchStart.toString().substring(0, 5) + " - " + lunchStop.toString().substring(0, 5) + " (" + (lunchStop.getTime() - lunchStart.getTime()) / 60000 + " minutes)";
-    }
+        StringBuilder s = new StringBuilder();
+
+        s.append(description).append(": ");
+        s.append(startTime).append(" - ");
+        s.append(stopTime).append(" (");
+        s.append(shiftDuration.toMinutes()).append(" minutes); Lunch: ");
+        s.append(lunchStart).append(" - ");
+        s.append(lunchStop).append(" (");
+        s.append(lunchDuration.toMinutes()).append(" minutes)");
+
+        return s.toString();
+
+    } 
+    
 }
