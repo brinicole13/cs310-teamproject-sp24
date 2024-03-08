@@ -11,7 +11,7 @@ public class Employee {
     private final LocalDateTime active;
     private final EmployeeType employeeType;
     private final Badge badge; 
-    private final Shift shift; //Need to implement shift class to work
+    private final Shift shift; 
     private final Department department; 
     
     // Set variables to active versions
@@ -51,7 +51,7 @@ public class Employee {
     public Badge getBadge(){
         return badge;
     }
-    public Shift getShift(){ // waiting on shift implementation
+    public Shift getShift(){ 
         return shift;
     }
     public Department getDepartment(){ 
@@ -62,9 +62,9 @@ public class Employee {
     public String toString() {
     StringBuilder s = new StringBuilder();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-         s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname)
-                  .append(" ").append(middlename).append(" (#").append(badge.getId()).append("), Type: ") 
-                  .append(employeeType).append(", Department: ").append(department.getDescription()).append(", Active: ").append(active.format(format));
+        s.append("ID #").append(id).append(": ").append(lastname).append(", ").append(firstname).append(" ")
+        .append(middlename).append(" (#").append(badge.getId()).append("), Type: ") .append(employeeType)
+        .append(", Department: ").append(department.getDescription()).append(", Active: ").append(active.format(format));
          return s.toString();
       
     }

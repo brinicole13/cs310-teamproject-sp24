@@ -21,12 +21,8 @@ public class EmployeeDAO {
     private final DAOFactory daoFactory;
 
     EmployeeDAO(DAOFactory daoFactory) {
-
         this.daoFactory = daoFactory;
-
-
     }
-
     public Employee find(int id) {
 
         Employee employee = null;
@@ -86,12 +82,9 @@ public class EmployeeDAO {
                     throw  new DAOException(e.getMessage());
                 }
             }
-
-
         }
         return employee;
     }
-
     public Employee find(Badge badge) {
         Employee employee = null;
 
@@ -133,7 +126,6 @@ public class EmployeeDAO {
                     }
                 }
             }
-
         } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         } finally {
@@ -151,8 +143,6 @@ public class EmployeeDAO {
                     throw  new DAOException(e.getMessage());
                 }
             }
-
-
         }
         return employee;
     }
