@@ -54,7 +54,7 @@ public class Punch {
         this.badge = badge;
     }
 
-    public LocalDateTime getOriginalTimestamp() {
+    public LocalDateTime getOriginalTimestamp(){
         return originalTimestamp;
     }
 
@@ -90,7 +90,6 @@ public class Punch {
         StringBuilder s = new StringBuilder();
         
         DateTimeFormatter newformat = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
-        
         s.append("#");
         s.append(badge.getId()).append(" ");
         s.append(punchType).append(": ");

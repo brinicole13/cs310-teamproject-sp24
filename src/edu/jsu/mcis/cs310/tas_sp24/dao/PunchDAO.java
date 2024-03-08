@@ -106,7 +106,6 @@ public class PunchDAO{
 
         EmployeeDAO empDao = daoFactory.getEmployeeDAO();
         Employee emp = empDao.find(newPunch.getBadge());
-
         int empTerminalId = emp.getDepartment().getTerminalid();
 
         if (empTerminalId == newPunch.getTerminalId()) {
