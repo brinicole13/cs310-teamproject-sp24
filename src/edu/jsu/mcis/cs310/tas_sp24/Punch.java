@@ -116,6 +116,10 @@ public class Punch {
         return s.toString();
     }
     
+    public void adjust (Shift s){
+        
+    }
+    
     // Override toString() to print the original timestamp
     @Override
     public String toString() {
