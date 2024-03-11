@@ -19,6 +19,7 @@ public class Punch {
         this.badge = badge;
         this.punchType = punchType;
         this.originalTimestamp = LocalDateTime.now(); // Initialize to current time
+        originalTimestamp = originalTimestamp.withNano(0);
     }
 
     // Constructor for existing punches
