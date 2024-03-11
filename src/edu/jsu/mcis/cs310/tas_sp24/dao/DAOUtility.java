@@ -28,9 +28,9 @@ public final class DAOUtility {
 
             punchData.put("id", String.valueOf(punch.getId()));
             punchData.put("badgeid", String.valueOf(punch.getBadge().getId()));
-            punchData.put("terminalid", String.valueOf(punch.getTerminalid()));
-            punchData.put("punchtype", String.valueOf(punch.getPunchtype()));
-            punchData.put("adjustmenttype", String.valueOf(punch.getAdjustmenttype()));
+            punchData.put("terminalid", String.valueOf(punch.getTerminalId()));
+            punchData.put("punchtype", String.valueOf(punch.getPunchType()));
+            punchData.put("adjustmenttype", String.valueOf(punch.getadjustmentType()));
             punchData.put("originaltimestamp", punch.getOriginalTimestamp().format(format).toUpperCase());
             punchData.put("adjustedtimestamp", punch.getAdjustedTimestamp().format(format).toUpperCase());
 
@@ -56,7 +56,7 @@ public final class DAOUtility {
         for (Punch p : dailypunchlist) {
             isRecorded = false;
 
-            PunchAdjustmentType type = (PunchAdjustmentType) p.getAdjustmenttype();
+            PunchAdjustmentType type = (PunchAdjustmentType) p.getadjustmentType();
 
             if (type == PunchAdjustmentType.LUNCH_START || type == PunchAdjustmentType.LUNCH_STOP) {
                 continue;
@@ -65,11 +65,11 @@ public final class DAOUtility {
             if (null != type) {
                 switch (type) {
                     case SHIFT_START:
-                        shiftStart = (LocalDateTime) p.getAdjustedtimestamp();
+                        shiftStart = (LocalDateTime) p.getAdjustedTimestamp();
                         isRecorded = true;
                         break;
                     case SHIFT_STOP:
-                        shiftStop = (LocalDateTime) p.getAdjustedtimestamp();
+                        shiftStop = (LocalDateTime) p.getAdjustedTimestamp();
                         isRecorded = true;
                         break;
                     default:
@@ -81,10 +81,10 @@ public final class DAOUtility {
             if (!isRecorded) {
                 switch (p.getPunchType()) {
                     case CLOCK_IN:
-                        shiftStart = (LocalDateTime) p.getAdjustedtimestamp();
+                        shiftStart = (LocalDateTime) p.getAdjustedTimestamp();
                         break;
                     case CLOCK_OUT:
-                        shiftStop = (LocalDateTime) p.getAdjustedtimestamp();
+                        shiftStop = (LocalDateTime) p.getAdjustedTimestamp();
                         break;
                     case TIME_OUT:
                         isTimeout = true;
@@ -101,7 +101,7 @@ public final class DAOUtility {
 
         if (shiftStop == null) {
             LocalTime sStop = s.getStopTime();
-            LocalDateTime ot = (LocalDateTime) dailypunchlist.get(0).getAdjustedtimestamp();
+            LocalDateTime ot = (LocalDateTime) dailypunchlist.get(0).getAdjustedTimestamp();
             
             shiftStop = ot.withHour(sStop.getHour()).withMinute(sStop.getMinute()).withSecond(0).withNano(0);
         }
