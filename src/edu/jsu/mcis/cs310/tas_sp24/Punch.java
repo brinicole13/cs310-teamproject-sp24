@@ -56,47 +56,47 @@ public class Punch {
         this.badge = badge;
     }
     
-           public void adjust (Shift s){
-           //Set starting variables
-           adjustedTimestamp = originalTimestamp;
-           int gracePeriod = s.getGracePeriod();
-           int roundInterval = s.getRoundInterval();
-           int dockPenalty = s.getDockPenalty();
+    public void adjust (Shift s){
+         //Set starting variables
+        adjustedTimestamp = originalTimestamp;
+        int gracePeriod = s.getGracePeriod();
+        int roundInterval = s.getRoundInterval();
+        int dockPenalty = s.getDockPenalty();
            
-           var lunchstart = adjustedTimestamp.with(s.getLunchStart());
-           var lunchstop = adjustedTimestamp.with(s.getLunchStop());
-           var shiftstart = adjustedTimestamp.with(s.getStartTime()); //Doing it this way prevents LocalTime conversion issues later on
-           var shiftstop = adjustedTimestamp.with(s.getStopTime());
-           adjustedTimestamp = originalTimestamp;
+        var lunchstart = adjustedTimestamp.with(s.getLunchStart());
+        var lunchstop = adjustedTimestamp.with(s.getLunchStop());
+        var shiftstart = adjustedTimestamp.with(s.getStartTime()); //Doing it this way prevents LocalTime conversion issues later on
+        var shiftstop = adjustedTimestamp.with(s.getStopTime());
+        adjustedTimestamp = originalTimestamp;
            
-           //If the punch is on the weekend
-           if(adjustedTimestamp.getDayOfWeek()== DayOfWeek.SUNDAY || adjustedTimestamp.getDayOfWeek() == DayOfWeek.SATURDAY){
-             //Adjust type interval round
-             adjustmentType = adjustmentType.INTERVAL_ROUND;
-             //Round about way of converting into mins and seconds
-             int intInSec = roundInterval * 60;
-             int num1 = 60 - roundInterval;
-             int num2 = roundInterval / 2;
-             int roundMin = num1 + num2;
-             double num4 = Math.abs(num2 - Math.round(num2));
-             double num5 = num4 * 60;
-             int roundSecs = (int)num5;
-             int punchMin = adjustedTimestamp.getMinute();
+        //If the punch is on the weekend
+        if(adjustedTimestamp.getDayOfWeek()== DayOfWeek.SUNDAY || adjustedTimestamp.getDayOfWeek() == DayOfWeek.SATURDAY){
+            //Adjust type interval round
+            adjustmentType = adjustmentType.INTERVAL_ROUND;// sets type of adjustment for read out 
+            //Round about way of converting into mins and seconds
+            int intInSec = roundInterval * 60;
+            int num1 = 60 - roundInterval;
+            int num2 = roundInterval / 2;
+            int roundMin = num1 + num2;
+            double num4 = Math.abs(num2 - Math.round(num2));
+            double num5 = num4 * 60;
+            int roundSecs = (int)num5;
+            int punchMin = adjustedTimestamp.getMinute();
              
              //Make sure to round to closest hour
-             if(adjustedTimestamp.isEqual(adjustedTimestamp.withMinute(roundMin).withSecond(roundSecs))||adjustedTimestamp.isAfter(adjustedTimestamp.withMinute(roundMin).withSecond(roundSecs))){
+            if(adjustedTimestamp.isEqual(adjustedTimestamp.withMinute(roundMin).withSecond(roundSecs))||adjustedTimestamp.isAfter(adjustedTimestamp.withMinute(roundMin).withSecond(roundSecs))){
                adjustedTimestamp = adjustedTimestamp.plusHours(1).withMinute(0).withSecond(0);
              }
              //Make sure to round down if within certain time
-             else if(punchMin % roundInterval < (roundInterval / 2)){
-                 adjustedTimestamp = adjustedTimestamp.withMinute(adjustedTimestamp.getMinute() / roundInterval * roundInterval);
-                 adjustedTimestamp = adjustedTimestamp.withSecond(adjustedTimestamp.getSecond() / intInSec * intInSec);
+            else if(punchMin % roundInterval < (roundInterval / 2)){
+                adjustedTimestamp = adjustedTimestamp.withMinute(adjustedTimestamp.getMinute() / roundInterval * roundInterval);
+                adjustedTimestamp = adjustedTimestamp.withSecond(adjustedTimestamp.getSecond() / intInSec * intInSec);
              }
              //Round up in hour
-             else{ 
-                  punchMin = (Math.round(punchMin/roundInterval) * roundInterval)+ roundInterval;
-                  adjustedTimestamp = adjustedTimestamp.withMinute(punchMin);
-                  adjustedTimestamp = adjustedTimestamp.withSecond(adjustedTimestamp.getSecond() / intInSec * intInSec);
+            else{ 
+                punchMin = (Math.round(punchMin/roundInterval) * roundInterval)+ roundInterval;
+                adjustedTimestamp = adjustedTimestamp.withMinute(punchMin);
+                adjustedTimestamp = adjustedTimestamp.withSecond(adjustedTimestamp.getSecond() / intInSec * intInSec);
                  
              }
            }
@@ -108,41 +108,41 @@ public class Punch {
                    //Round Interval shift start
                    if(adjustedTimestamp.isEqual(shiftstart.minusMinutes(roundInterval))|| adjustedTimestamp.isBefore(shiftstart) && adjustedTimestamp.isAfter(shiftstart.minusMinutes(roundInterval))){
                        adjustedTimestamp = shiftstart;
-                       adjustmentType = adjustmentType.SHIFT_START;
+                       adjustmentType = adjustmentType.SHIFT_START; // sets type of adjustment for read out 
                    }
                    //adjust if within Grace Period 
                    else if(adjustedTimestamp.isAfter(adjustedTimestamp.with(shiftstart)) && adjustedTimestamp.isBefore(adjustedTimestamp.with(shiftstart).plusMinutes(gracePeriod)) || adjustedTimestamp.isEqual(shiftstart.plusMinutes(gracePeriod))){
                        adjustedTimestamp = shiftstart;
-                       adjustmentType = adjustmentType.SHIFT_START;
+                       adjustmentType = adjustmentType.SHIFT_START;// sets type of adjustment for read out 
                    }
                    //adjust with dock penalty within shift start
                    else if(adjustedTimestamp.isAfter(shiftstart) && adjustedTimestamp.isBefore(shiftstart.plusMinutes(dockPenalty)) || adjustedTimestamp.isEqual(shiftstart.plusMinutes(dockPenalty))){
                        adjustedTimestamp = shiftstart.plusMinutes(dockPenalty);
-                       adjustmentType = adjustmentType.SHIFT_DOCK;
+                       adjustmentType = adjustmentType.SHIFT_DOCK;// sets type of adjustment for read out 
                    }
                    //Round Interval for lunch stop // Ending break is same as clocking back in
                    else if(adjustedTimestamp.isBefore(lunchstop) && adjustedTimestamp.isAfter(lunchstop.minusMinutes(roundInterval)) || adjustedTimestamp.isEqual(lunchstop.minusMinutes(roundInterval))){
                        adjustedTimestamp = lunchstop;
-                       adjustmentType = adjustmentType.LUNCH_STOP;
+                       adjustmentType = adjustmentType.LUNCH_STOP;// sets type of adjustment for read out 
                    }
                    //adjust if within lunchstop grace period
                    else if(adjustedTimestamp.isAfter(lunchstop) && adjustedTimestamp.isBefore(lunchstop.plusMinutes(gracePeriod)) || adjustedTimestamp.isEqual(lunchstop.plusMinutes(gracePeriod))){
                        adjustedTimestamp = lunchstop;
-                       adjustmentType = adjustmentType.LUNCH_STOP;
+                       adjustmentType = adjustmentType.LUNCH_STOP;// sets type of adjustment for read out 
                    }
                    //Dock 
                    else if(adjustedTimestamp.isAfter(adjustedTimestamp.with(lunchstop)) && adjustedTimestamp.isBefore(adjustedTimestamp.with(lunchstop).plusMinutes(dockPenalty)) || adjustedTimestamp.isEqual(lunchstop.plusMinutes(dockPenalty))){
                        adjustedTimestamp = lunchstop.plusMinutes(dockPenalty);
-                       adjustmentType = adjustmentType.SHIFT_DOCK;
+                       adjustmentType = adjustmentType.SHIFT_DOCK;// sets type of adjustment for read out 
                    }
               
                    else if(adjustedTimestamp.getMinute() % roundInterval == 0 || adjustedTimestamp.getMinute() == 0){
                        adjustedTimestamp = adjustedTimestamp.withSecond(0).withNano(0);
-                       adjustmentType = adjustmentType.NONE;
+                       adjustmentType = adjustmentType.NONE;// sets type of adjustment for read out 
                    }
                    //Interval Round
                    else{
-                       adjustmentType = adjustmentType.INTERVAL_ROUND;
+                       adjustmentType = adjustmentType.INTERVAL_ROUND;// sets type of adjustment for read out 
                        //Similar process as to earlier
                        int intInSec = roundInterval * 60;
                        int num1 = 60 - roundInterval;
@@ -176,39 +176,40 @@ public class Punch {
                    //Same processes as the clocking in except adjusting based on clocking out times
                    if(adjustedTimestamp.isAfter(shiftstop) && adjustedTimestamp.isBefore(shiftstop.plusMinutes(roundInterval)) || adjustedTimestamp.isEqual(lunchstop.plusMinutes(roundInterval))){
                        adjustedTimestamp = shiftstop;
-                       adjustmentType = adjustmentType.SHIFT_STOP;
+                       adjustmentType = adjustmentType.SHIFT_STOP;// sets type of adjustment for read out 
                    }
                    //Grace Period adjustment based on stop clock out
                    else if(adjustedTimestamp.isBefore(shiftstop) && adjustedTimestamp.isAfter(shiftstop.minusMinutes(gracePeriod)) || adjustedTimestamp.isEqual(shiftstop.minusMinutes(gracePeriod))){
                        adjustedTimestamp = shiftstop;
-                       adjustmentType = adjustmentType.SHIFT_STOP;
+                       adjustmentType = adjustmentType.SHIFT_STOP;// sets type of adjustment for read out 
                    }
                    //Dock Pen
                    else if(adjustedTimestamp.isBefore(shiftstop) && adjustedTimestamp.isAfter(shiftstop.minusMinutes(dockPenalty)) || adjustedTimestamp.isEqual(shiftstop.minusMinutes(dockPenalty))){
                        adjustedTimestamp = shiftstop.minusMinutes(dockPenalty);
-                       adjustmentType = adjustmentType.SHIFT_DOCK;
+                       adjustmentType = adjustmentType.SHIFT_DOCK;// sets type of adjustment for read out 
                    }
                    //Lunch Start (starting break is same as clocking out)
                    else if(adjustedTimestamp.isAfter(lunchstart) && adjustedTimestamp.isBefore(lunchstart.plusMinutes(roundInterval)) || adjustedTimestamp.isEqual(lunchstart.plusMinutes(roundInterval))){
                     adjustedTimestamp = lunchstart;
-                    adjustmentType = adjustmentType.LUNCH_START;
+                    adjustmentType = adjustmentType.LUNCH_START;// sets type of adjustment for read out 
                   } 
                 else if(adjustedTimestamp.isBefore(lunchstart) && adjustedTimestamp.isAfter(lunchstart.minusMinutes(gracePeriod)) || adjustedTimestamp.isEqual(lunchstart.minusMinutes(gracePeriod))) { 
                     adjustedTimestamp = lunchstart;
-                    adjustmentType = adjustmentType.LUNCH_START;
+                    adjustmentType = adjustmentType.LUNCH_START;// sets type of adjustment for read out 
                   }
                 else if(adjustedTimestamp.isBefore(lunchstart) && adjustedTimestamp.isAfter(lunchstart.minusMinutes(dockPenalty)) || adjustedTimestamp.isEqual(lunchstart.minusMinutes(dockPenalty))) { 
                     adjustedTimestamp = lunchstart.minusMinutes(dockPenalty);
-                    adjustmentType = adjustmentType.LUNCH_START;
+                    adjustmentType = adjustmentType.LUNCH_START;// sets type of adjustment for read out 
                   }
                     else if(adjustedTimestamp.getMinute() % 15 == 0 || 
                     adjustedTimestamp.getMinute() == 0) {
                     adjustedTimestamp = adjustedTimestamp.withSecond(0).withNano(0);
-                    adjustmentType = adjustmentType.NONE;        
+                    adjustmentType = adjustmentType.NONE; // sets type of adjustment for read out        
                 }
                 //Interval Round
                 else {
-                    adjustmentType = adjustmentType.INTERVAL_ROUND;
+                    adjustmentType = adjustmentType.INTERVAL_ROUND;// sets type of adjustment for read out 
+                    //Similar process again
                     int intInSec = roundInterval * 60;  
                     int num1 = 60 - roundInterval;
                     int num2 = roundInterval / 2;
