@@ -188,12 +188,12 @@ public class PunchDAO{
 
     }
     
-    public ArrayList list(Badge badge, LocalDate lowerDate, LocalDate upperDate) {
+    public ArrayList list(Badge badge, LocalDate begin, LocalDate end) {
         ArrayList<Punch> list = new ArrayList();
         
-        LocalDate date = lowerDate;
+        LocalDate date = begin;
         
-        while (date.isBefore(upperDate) || date.equals(upperDate)) {
+        while (date.isBefore(begin) || date.equals(end)) {
             ArrayList<Punch> entries = new ArrayList();
             
             try {
