@@ -41,7 +41,7 @@ public class PunchListRangeofList {
         LocalDate ts1 = LocalDate.of(2018, Month.SEPTEMBER, 17);
         LocalDate ts2 = LocalDate.of(2018, Month.SEPTEMBER, 21);
 
-        Badge b = badgeDAO.find("67637925");
+        Badge b = badgeDAO.find("021890C0");
 
         /* Retrieve Punch List #1 (created by DAO) */
         
@@ -59,18 +59,18 @@ public class PunchListRangeofList {
         ArrayList<Punch> p2 = new ArrayList<>();
 
         /* Add Punches */
-        p2.add(punchDAO.find(4716));
-        p2.add(punchDAO.find(4811));
-        p2.add(punchDAO.find(4813));
-        p2.add(punchDAO.find(4847));
-        p2.add(punchDAO.find(4884));
-        p2.add(punchDAO.find(4949));
-        p2.add(punchDAO.find(5018));
-        p2.add(punchDAO.find(5132));
-        p2.add(punchDAO.find(5177));
-        p2.add(punchDAO.find(5267));
-        p2.add(punchDAO.find(5324));
-        p2.add(punchDAO.find(5392));
+        p2.add(punchDAO.find(6887));
+        p2.add(punchDAO.find(6888));
+        p2.add(punchDAO.find(6889));
+        p2.add(punchDAO.find(6890));
+        p2.add(punchDAO.find(6891));
+        p2.add(punchDAO.find(6892));
+        p2.add(punchDAO.find(6893));
+        p2.add(punchDAO.find(6894));
+        p2.add(punchDAO.find(6895));
+        p2.add(punchDAO.find(6896));
+        p2.add(punchDAO.find(6897));
+        p2.add(punchDAO.find(6898));
 
         /* Export Punch List #2 Contents to StringBuilder */
         
