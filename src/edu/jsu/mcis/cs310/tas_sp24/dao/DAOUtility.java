@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.github.cliftonlabs.json_simple.*;
 
 /**
  *
@@ -159,8 +160,6 @@ public final class DAOUtility {
         System.out.println(totalMinutesWorked + " here");
         System.out.println(totalWorkExpected + " oer");
         
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        double percent = Double.valueOf(decimalFormat.format((totalMinutesWorked / totalWorkExpected) * 100));
 
 
 
