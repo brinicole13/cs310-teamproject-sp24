@@ -9,10 +9,10 @@ public class AbsenteeismDAO {
     private static final String QUERY_FIND = "SELECT * FROM absenteeism WHERE employeeid = ?";
     private static final String QUERY_CREATE = "INSERT INTO absenteeism (employeeid, payperiod, percentage) VALUES (?, ?, ?)";
     private static final String QUERY_UPDATE = "UPDATE absenteeism SET percentage = ? WHERE employeeid = ?";
-    private final DAOFactory daoFactory = null;
+    private final DAOFactory daoFactory;
 
-    AbsenteeismDAO(DAOFactory aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    AbsenteeismDAO(DAOFactory daoFactory) {
+       this.daoFactory = daoFactory;
     }
 
 
@@ -119,11 +119,11 @@ public class AbsenteeismDAO {
 
                     if (rowAffected == 1) {
 
-//                        rs = ps.getGeneratedKeys();
-//
-//                        if (rs.next()) {
-//                            absentId = rs.getInt(1);
-//                        }
+                        rs = ps.getGeneratedKeys();
+
+                        if (rs.next()) {
+                            absentId = rs.getInt(1);
+                        }
                     }
                 }
             }

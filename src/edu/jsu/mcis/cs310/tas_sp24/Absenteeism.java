@@ -46,8 +46,7 @@ public class Absenteeism {
         // "#F1EE0555 (Pay Period Starting 08-05-2018): -20.00%"
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         
-        s
-                .append("#")
+        s.append("#")
                 .append(employee.getBadge().getId())
                 .append(' ')
                 .append("(Pay Period Starting ")
