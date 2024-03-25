@@ -4,7 +4,6 @@ import edu.jsu.mcis.cs310.tas_sp24.*;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_IN;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_OUT;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.TIME_OUT;
-import java.text.DecimalFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -38,6 +37,8 @@ public final class DAOUtility {
             jsonData.add(punchData);
 
         }
+        
+        
 
         String json = JSONValue.toJSONString(jsonData);
         return json;
@@ -159,12 +160,11 @@ public final class DAOUtility {
         System.out.println(totalMinutesWorked + " here");
         System.out.println(totalWorkExpected + " oer");
         
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        double percent = Double.valueOf(decimalFormat.format((totalMinutesWorked / totalWorkExpected) * 100));
 
 
 
         return 100.0 - (double) totalMinutesWorked / (double) totalWorkExpected * 100;
     }       
+
 
 }

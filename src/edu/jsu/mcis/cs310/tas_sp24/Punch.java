@@ -73,7 +73,7 @@ public class Punch {
         if(adjustedTimestamp.getDayOfWeek()== DayOfWeek.SUNDAY || adjustedTimestamp.getDayOfWeek() == DayOfWeek.SATURDAY){
             //Adjust type interval round
             adjustmentType = adjustmentType.INTERVAL_ROUND;// sets type of adjustment for read out 
-            //Round about way of converting into mins and seconds
+            //Round about way of rounding mins and secs for if comparison
             int intInSec = roundInterval * 60;
             int num1 = 60 - roundInterval;
             int num2 = roundInterval / 2;

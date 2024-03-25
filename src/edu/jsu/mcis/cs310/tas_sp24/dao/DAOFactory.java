@@ -36,6 +36,10 @@ public final class DAOFactory {
         return new BadgeDAO(this);
     }
     
+    public AbsenteeismDAO getAbsenteeismDAO(){
+        return new AbsenteeismDAO(this);
+    }
+    
     public DepartmentDAO getDepartmentDAO(){
         return new DepartmentDAO(this);
     }
@@ -50,5 +54,5 @@ public final class DAOFactory {
     
     public PunchDAO getPunchDAO(){
         return new PunchDAO(this);
-    }
+    }   
 }

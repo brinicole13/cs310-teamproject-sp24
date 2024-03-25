@@ -36,7 +36,7 @@ public class AbsenteeismTest {
         
         /* Get Pay Period Punch List */
         
-        LocalDate ts = p.getOriginaltimestamp().toLocalDate();
+        LocalDate ts = p.getOriginalTimestamp().toLocalDate();
         LocalDate begin = ts.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate end = begin.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         
@@ -50,7 +50,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
@@ -83,7 +83,7 @@ public class AbsenteeismTest {
         
         /* Get Pay Period Punch List */
         
-        LocalDate ts = p.getOriginaltimestamp().toLocalDate();
+        LocalDate ts = p.getOriginalTimestamp().toLocalDate();
         LocalDate begin = ts.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate end = begin.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         
@@ -97,7 +97,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
@@ -130,7 +130,7 @@ public class AbsenteeismTest {
         
         /* Get Pay Period Punch List */
         
-        LocalDate ts = p.getOriginaltimestamp().toLocalDate();
+        LocalDate ts = p.getOriginalTimestamp().toLocalDate();
         LocalDate begin = ts.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate end = begin.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         
@@ -144,7 +144,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
