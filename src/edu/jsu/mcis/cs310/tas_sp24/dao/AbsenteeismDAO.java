@@ -40,9 +40,9 @@ public class AbsenteeismDAO {
 
                     while (rs.next()) {
 
-                        double percentage = rs.getDouble("percentage");
+                        double percent = rs.getDouble("percentage");
 
-                        absent = new Absenteeism(employeeid, payperiod, percentage);
+                        absent = new Absenteeism(employeeid, payperiod, percent);
                     }
 
                 }
@@ -96,7 +96,7 @@ public class AbsenteeismDAO {
 
                     ps.setInt(1, newAbsenteeism.getEmployee().getId());
                     ps.setString(2, newAbsenteeism.getStartDate().toString());
-                    ps.setDouble(3, newAbsenteeism.getPercent());
+                    ps.setBigDecimal(newAbsenteeism.getPercent());
 
                     int rowAffected = ps.executeUpdate();
 

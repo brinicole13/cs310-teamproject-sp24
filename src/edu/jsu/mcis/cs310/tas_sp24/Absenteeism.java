@@ -1,4 +1,5 @@
 package edu.jsu.mcis.cs310.tas_sp24;
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate; 
 import java.time.format.DateTimeFormatter;
@@ -9,10 +10,10 @@ public class Absenteeism {
     //class fields
     private Employee employee;
     private final LocalDate startDate;
-    private Double percent;
+    private BigDecimal percent;
     
     //Constructor
-    public Absenteeism(Employee employee, LocalDate startDate, Double percent) {
+    public Absenteeism(Employee employee, LocalDate startDate, BigDecimal percent) {
         this.employee = employee;
         this.startDate = startDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         this.percent = percent;
@@ -31,11 +32,11 @@ public class Absenteeism {
         return startDate;
     }
     
-    public Double getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
     
-    public void setPercent(Double percent) {
+    public void setPercent(BigDecimal percent) {
         this.percent = percent;
     }
     
@@ -55,8 +56,6 @@ public class Absenteeism {
                 .append(percent)
                 .append("%");
 
-        return s.toString();
-
-        
+        return s.toString();        
     }
 }
