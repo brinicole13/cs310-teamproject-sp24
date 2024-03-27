@@ -4,6 +4,7 @@ import edu.jsu.mcis.cs310.tas_sp24.*;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_IN;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_OUT;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.TIME_OUT;
+import java.math.BigDecimal;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -120,7 +121,7 @@ public final class DAOUtility {
         return (int) totalMinutes;
     }
 
-    public static double calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
+    public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
 
         ArrayList<Punch> dailyPunches = new ArrayList();
         
@@ -163,7 +164,7 @@ public final class DAOUtility {
 
 
 
-        return 100.0 - (double) totalMinutesWorked / (double) totalWorkExpected * 100;
+        return 100.0 - totalMinutesWorked / totalWorkExpected * 100;
     }       
 
 
