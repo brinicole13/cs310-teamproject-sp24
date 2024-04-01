@@ -188,8 +188,8 @@ public class PunchDAO{
 
     }
     
-    public ArrayList list(Badge badge, LocalDate begin, LocalDate end) {
-        ArrayList<Punch> list = new ArrayList();
+    public ArrayList<Punch> list(Badge badge, LocalDate begin, LocalDate end) {
+        ArrayList<Punch> rangedlist = new ArrayList();
         
         LocalDate date = begin;
         
@@ -200,18 +200,18 @@ public class PunchDAO{
                 entries = list(badge, date);
             } catch (IndexOutOfBoundsException e) {}
             
-            if (!entries.isEmpty() && !list.isEmpty()) {
-                if (list.get(list.size() - 1).toString().equals(entries.get(0).toString())) {
-                    list.remove(list.size() - 1);
+            if (!entries.isEmpty() && !rangedlist.isEmpty()) {
+                if (rangedlist.get(rangedlist.size() - 1).toString().equals(entries.get(0).toString())) {
+                    rangedlist.remove(rangedlist.size() - 1);
                 }
             }
             
-            list.addAll(entries);
+            rangedlist.addAll(entries);
             
             date = date.plusDays(1);
         }
         
-        return list;
+        return rangedlist;
     }
     public int create(Punch newPunch) {
 
