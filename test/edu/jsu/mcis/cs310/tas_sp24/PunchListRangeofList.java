@@ -6,15 +6,6 @@ import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Divash
- */
 public class PunchListRangeofList {
      private DAOFactory daoFactory;
     
