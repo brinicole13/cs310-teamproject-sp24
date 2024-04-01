@@ -18,7 +18,7 @@ public class BadgeCreateDeleteTest {
     @Test
     public void testCreateBadge1() {
 
-        /* Create Badges */
+        /* Create Badges.. */
 
         Badge b1 = new Badge("Bies, Bill X");
 
