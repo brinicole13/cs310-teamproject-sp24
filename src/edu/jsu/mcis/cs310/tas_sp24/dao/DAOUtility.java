@@ -121,7 +121,7 @@ public final class DAOUtility {
         return (int) totalMinutes;
     }
 
-    public static double calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
+    public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
 
         ArrayList<Punch> dailyPunches = new ArrayList();
         

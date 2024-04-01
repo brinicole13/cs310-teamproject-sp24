@@ -50,7 +50,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
@@ -97,7 +97,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
@@ -144,7 +144,7 @@ public class AbsenteeismTest {
         
         /* Compute Pay Period Total Absenteeism */
         
-        double percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
+        BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
         
         /* Insert Absenteeism Into Database */
         
