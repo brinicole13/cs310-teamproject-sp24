@@ -2,48 +2,58 @@ package edu.jsu.mcis.cs310.tas_sp24.dao;
 
 import edu.jsu.mcis.cs310.tas_sp24.*;
 import java.sql.*;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 
 public class AbsenteeismDAO {
 
-    private static final String QUERY_FIND = "SELECT * FROM absenteeism WHERE employeeid = ?";
+    private static final String QUERY_FIND = "SELECT * FROM absenteeism WHERE employeeid = ? AND payperiod = ?";
     private static final String QUERY_CREATE = "INSERT INTO absenteeism (employeeid, payperiod, percentage) VALUES (?, ?, ?)";
-    private static final String QUERY_UPDATE = "UPDATE absenteeism SET percentage = ? WHERE employeeid = ?";
+    private static final String QUERY_UPDATE = "UPDATE absenteeism SET percentage = ? WHERE employeeid = ? AND payperiod = ?";
+
     private final DAOFactory daoFactory;
 
-    AbsenteeismDAO(DAOFactory daoFactory) {
-       this.daoFactory = daoFactory;
+    AbsenteeismDAO(DAOFactory daofactory) {
+        this.daoFactory = daofactory;
     }
 
-
-    public Absenteeism find(Employee employeeid, LocalDate payperiod) {
-
-        Absenteeism absent = null;
-
+    /**
+     * Searches the "absenteeism" table for a certain employee's absenteeism.
+     * @param employee
+     * @param payperiod
+     * @return A Absenteeism object for the given employee.
+     */
+    
+    public Absenteeism find(Employee employee, LocalDate payperiod) {
+        Absenteeism absenteeism = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        
+        payperiod = payperiod.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
 
         try {
 
             Connection conn = daoFactory.getConnection();
 
-            if (conn.isValid(0)) {
-
+            if (conn.isValid(0)) {                
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, Integer.toString(employeeid.getId()));
+                ps.setInt(1, employee.getId());
+                ps.setDate(2, Date.valueOf(payperiod));
 
-                boolean hasresults = ps.execute();
+                rs = ps.executeQuery();
 
-                if (hasresults) {
+                if (rs.next()) {
 
-                    rs = ps.getResultSet();
+                    double percentage = rs.getDouble("percentage");
 
-                    while (rs.next()) {
-
-                        double percent = rs.getDouble("percentage");
-
-                        absent = new Absenteeism(employeeid, payperiod, percent);
-                    }
+                    absenteeism = new Absenteeism(employee, payperiod, BigDecimal.valueOf(percentage));
 
                 }
 
@@ -71,61 +81,39 @@ public class AbsenteeismDAO {
             }
 
         }
-
-        return absent;
+        return absenteeism;
     }
+    
+    /**
+     * Inserts a new Absenteeism object into the absenteeism table.
+     * @param absenteeism 
+     */
 
-    public int create(Absenteeism newAbsenteeism) {
-
-        int absentId = 0;
+    public void create(Absenteeism absenteeism) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        Absenteeism absent2 = null;
-        absent2 = this.find(newAbsenteeism.getEmployee(), newAbsenteeism.getStartDate());
-
-        
+                
         try {
 
             Connection conn = daoFactory.getConnection();
 
             if (conn.isValid(0)) {
-                if (absent2 == null) {
-                    ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
 
-                    ps.setInt(1, newAbsenteeism.getEmployee().getId());
-                    ps.setString(2, newAbsenteeism.getStartDate().toString());
-                    ps.setBigDecimal(newAbsenteeism.getPercent());
-
-                    int rowAffected = ps.executeUpdate();
-
-                    if (rowAffected == 1) {
-
-                        rs = ps.getGeneratedKeys();
-
-                        if (rs.next()) {
-                            absentId = rs.getInt(1);
-                        }
-                    }
-                } 
-                else {
+                if (find(absenteeism.getEmployee(), absenteeism.getPayperiod()) != null) {
                     ps = conn.prepareStatement(QUERY_UPDATE);
-
-                    ps.setDouble(1, newAbsenteeism.getPercent());
-                    ps.setInt(2, newAbsenteeism.getEmployee().getId());
-
-                    int rowAffected = ps.executeUpdate();
-
-                    if (rowAffected == 1) {
-
-                        rs = ps.getGeneratedKeys();
-
-                        if (rs.next()) {
-                            absentId = rs.getInt(1);
-                        }
-                    }
+                    ps.setDouble(1, absenteeism.getPercentage().doubleValue());
+                    ps.setInt(2, absenteeism.getEmployee().getId());
+                    ps.setDate(3, Date.valueOf(absenteeism.getPayperiod()));
+                } else {
+                    ps = conn.prepareStatement(QUERY_CREATE);
+                    ps.setInt(1, absenteeism.getEmployee().getId());
+                    ps.setDate(2, Date.valueOf(absenteeism.getPayperiod()));
+                    ps.setDouble(3, absenteeism.getPercentage().doubleValue());
                 }
+
+                ps.executeUpdate();
+
             }
 
         } catch (SQLException e) {
@@ -148,9 +136,6 @@ public class AbsenteeismDAO {
                     throw new DAOException(e.getMessage());
                 }
             }
-
         }
-        
-        return absentId;
     }
 }

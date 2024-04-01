@@ -10,13 +10,13 @@ public class Absenteeism {
     //class fields
     private Employee employee;
     private final LocalDate startDate;
-    private BigDecimal percent;
+    private final BigDecimal percentage;
     
     //Constructor
-    public Absenteeism(Employee employee, LocalDate startDate, BigDecimal percent) {
+    public Absenteeism(Employee employee, LocalDate startDate, BigDecimal percentage) {
         this.employee = employee;
         this.startDate = startDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
-        this.percent = percent;
+        this.percentage = percentage;
     }
     
     //Getters and Setters
@@ -32,12 +32,8 @@ public class Absenteeism {
         return startDate;
     }
     
-    public BigDecimal getPercent() {
-        return percent;
-    }
-    
-    public void setPercent(BigDecimal percent) {
-        this.percent = percent;
+    public BigDecimal getPercentage() {
+        return percentage;
     }
     
     //toString Method
@@ -53,7 +49,7 @@ public class Absenteeism {
                 .append("(Pay Period Starting ")
                 .append(startDate.format(format))
                 .append("): ")
-                .append(percent)
+                .append(percentage)
                 .append("%");
 
         return s.toString();        
