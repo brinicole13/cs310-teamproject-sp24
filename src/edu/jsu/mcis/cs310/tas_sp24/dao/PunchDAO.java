@@ -193,7 +193,7 @@ public class PunchDAO{
         
         LocalDate date = begin;
         
-        while (date.isBefore(begin) || date.equals(end)) {
+        while (date.isBefore(end) || date.equals(end)) {
             ArrayList<Punch> entries = new ArrayList();
             
             try {
