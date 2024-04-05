@@ -55,4 +55,9 @@ public final class DAOFactory {
     public PunchDAO getPunchDAO(){
         return new PunchDAO(this);
     }   
+    
+    public ReportDAO getReportDAO(){
+        return new ReportDAO (this);
+    }
+    
 }
