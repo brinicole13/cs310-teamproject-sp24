@@ -123,12 +123,14 @@ public final class DAOUtility {
     }
 
     public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
-        BigDecimal minutesWorked = BigDecimal.valueof(calculateTotalMinutes(punchlist, s));
+        double minutesWorked = calculateTotalMinutes(punchlist, s);
         
-        BigDecimal scheduledMinutes = BigDecimal.valueof(s.get());
+        double scheduledMinutes =s.getShiftDuration().toMinutes();
         
-        BigDecimal percentage  = minutesWorked.divide(scheduledMinutes, 5, RoundingMode.HALF_UP);
+        double absenteeism = 0;
         
-        return new BigDecimal("1").subtract(percentage).multiply(new BigDecimal("100")).setScale(2, RoundingMode.HALF_UP);
-    }       
+        absenteeism = ((scheduledMinutes - minutesWorked) / scheduledMinutes) * 100;
+        
+        return BigDecimal.valueOf(absenteeism);
+    }    
 }
