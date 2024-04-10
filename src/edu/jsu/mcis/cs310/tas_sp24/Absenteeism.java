@@ -10,7 +10,7 @@ import java.time.temporal.TemporalAdjusters;
 
 public class Absenteeism {
     //class fields
-    private Employee employee;
+    private final Employee employee;
     private final LocalDate payperiod;
     private final BigDecimal percentage;
     
