@@ -5,6 +5,7 @@ import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_IN;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.CLOCK_OUT;
 import static edu.jsu.mcis.cs310.tas_sp24.EventType.TIME_OUT;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -122,50 +123,12 @@ public final class DAOUtility {
     }
 
     public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
-
-        ArrayList<Punch> dailyPunches = new ArrayList();
+        BigDecimal minutesWorked = BigDecimal.valueof(calculateTotalMinutes(punchlist, s));
         
-        Integer ongoingDay = punchlist.get(0).getAdjustedTimestamp().getDayOfMonth();
-        int currentDay;
-
-        long totalMinutesWorked = 0;
-        long totalWorkExpected = 0;
-        long shiftDuration = s.getShiftDuration().toMinutes();
-
-        for (Punch p: punchlist) {
-            currentDay = p.getAdjustedTimestamp().getDayOfMonth();
-
-            if (currentDay != ongoingDay) {
-                // current punch is from a new day
-                for (Punch a : dailyPunches) {
-                    System.out.println(a.getAdjustedTimestamp().getDayOfMonth());
-                }
-                
-                totalMinutesWorked += calculateTotalMinutes(dailyPunches, s);
-                
-                if (shiftDuration > s.getLunchThreshold()) {
-                    totalWorkExpected += (shiftDuration - s.getLunchDuration().toMinutes());
-                } else {
-                    totalWorkExpected += shiftDuration;
-                }
-                
-                dailyPunches.clear();
-                dailyPunches.add(p);
-
-                ongoingDay = currentDay;
-            }
-
-            dailyPunches.add(p);
-        }
+        BigDecimal scheduledMinutes = BigDecimal.valueof(s.get());
         
-        System.out.println(totalMinutesWorked + " here");
-        System.out.println(totalWorkExpected + " oer");
+        BigDecimal percentage  = minutesWorked.divide(scheduledMinutes, 5, RoundingMode.HALF_UP);
         
-
-
-
-        return 100.0 - totalMinutesWorked / totalWorkExpected * 100;
+        return new BigDecimal("1").subtract(percentage).multiply(new BigDecimal("100")).setScale(2, RoundingMode.HALF_UP);
     }       
-
-
 }
