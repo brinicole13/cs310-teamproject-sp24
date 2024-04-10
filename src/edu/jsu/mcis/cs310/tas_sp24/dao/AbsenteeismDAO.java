@@ -100,15 +100,15 @@ public class AbsenteeismDAO {
 
             if (conn.isValid(0)) {
 
-                if (find(absenteeism.getEmployee(), absenteeism.getPayperiod()) != null) {
+                if (find(absenteeism.getEmployee(), absenteeism.getPayPeriod()) != null) {
                     ps = conn.prepareStatement(QUERY_UPDATE);
                     ps.setDouble(1, absenteeism.getPercentage().doubleValue());
                     ps.setInt(2, absenteeism.getEmployee().getId());
-                    ps.setDate(3, Date.valueOf(absenteeism.getPayperiod()));
+                    ps.setDate(3, Date.valueOf(absenteeism.getPayPeriod()));
                 } else {
                     ps = conn.prepareStatement(QUERY_CREATE);
                     ps.setInt(1, absenteeism.getEmployee().getId());
-                    ps.setDate(2, Date.valueOf(absenteeism.getPayperiod()));
+                    ps.setDate(2, Date.valueOf(absenteeism.getPayPeriod()));
                     ps.setDouble(3, absenteeism.getPercentage().doubleValue());
                 }
 
