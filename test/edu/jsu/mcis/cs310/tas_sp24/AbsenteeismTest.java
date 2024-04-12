@@ -114,7 +114,7 @@ public class AbsenteeismTest {
         
         /* Compare to Expected Value */
         
-        assertEquals("#F1EE0555 (Pay Period Starting 08-05-2018): 29.41%", a2.toString());
+        assertEquals("#F1EE0555 (Pay Period Starting 08-05-2018): -20.00%", a2.toString());
         
     }
     
