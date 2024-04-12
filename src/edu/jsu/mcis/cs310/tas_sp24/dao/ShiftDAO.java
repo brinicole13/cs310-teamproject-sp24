@@ -8,7 +8,7 @@ public class ShiftDAO {
     
     private static final String QUERY_FIND = "SELECT * FROM shift WHERE id = ?";
     private static final String QUERY_BADGE = "SELECT * FROM employee WHERE badgeid = ?";
-    
+     private static final String QUERY_GET_DAILYSCHEDULE = "SELECT * FROM dailyschedule WHERE id = ?";
     private final DAOFactory daoFactory;
     
     ShiftDAO(DAOFactory daoFactory) {
