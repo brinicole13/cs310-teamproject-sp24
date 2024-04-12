@@ -129,8 +129,12 @@ public final class DAOUtility {
         
         double absenteeism = 0;
         
-        absenteeism = ((scheduledMinutes - minutesWorked) / scheduledMinutes) * 100;
+        for (int i = 1; i <= 5; i++) {
+            scheduledMinutes += ((Shift.getDailySchedule(DayOfWeek.of(i)).getShiftduration)) -(Shift.getDailySchedule(DayOfWeek.of(i)));
+        } 
         
-        return BigDecimal.valueOf(absenteeism);
+        double percentage = ((scheduledMinutes - minutesWorked) / scheduledMinutes) * 100;
+        
+        return BigDecimal.valueOf(percentage);
     }    
 }
