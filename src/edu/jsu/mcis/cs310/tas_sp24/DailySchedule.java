@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class DailySchedule{
     
-    private LocalTime shiftstart, shiftstop, lunchstart, lunchstop;
-    private int roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;
+    private final int roundinterval, graceperiod, dockpenalty, lunchthreshold;
     
     
     public DailySchedule(HashMap< String, String> map){
