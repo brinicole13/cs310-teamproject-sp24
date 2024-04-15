@@ -51,7 +51,7 @@ public class AbsenteeismTest {
         for (Punch punch : punchlist) {
             punch.adjust(s);
         }
-        
+       
         /* Compute Pay Period Total Absenteeism */
         
         BigDecimal percentage = DAOUtility.calculateAbsenteeism(punchlist, s);
