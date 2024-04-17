@@ -7,25 +7,19 @@ import java.time.temporal.ChronoUnit;
 import java.time.format.DateTimeFormatter;
 
 
-
-
-
 public class Main {
 
     public static void main(String[] args) {
         
-        // Just added to see if the change works... Divash
-        // Just added to see if the changes work... Rijesh
-        //Test Committ Again - Daniel BLair
-        //Test commit Bri
+       
         
-        // test database connectivity; get DAOs
+        //test database connectivity; get DAOs
 
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         
         // find badge //hello world
-
+        
         Badge b = badgeDAO.find("C4F37EFF");
         
         // output should be "Test Badge: #C4F37EFF (Welch, Travis C)"

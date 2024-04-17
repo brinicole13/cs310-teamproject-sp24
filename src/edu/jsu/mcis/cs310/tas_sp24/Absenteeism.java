@@ -7,19 +7,32 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
-
+/**
+ * <p>Employee, LocalDate, BigDecimal are the class fields being declared.</p>
+ */
 public class Absenteeism {
     //class fields
     private final Employee employee;
     private final LocalDate payperiod;
     private final BigDecimal percentage;
     
+/**
+ * 
+ * @param employee
+ * @param payperiod
+ * @param absenteeism 
+ */
     //Constructor
     public Absenteeism(Employee employee, LocalDate payperiod, BigDecimal absenteeism) {
         this.employee = employee;
         this.payperiod = payperiod.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         this.percentage = absenteeism.setScale(2, RoundingMode.HALF_UP);
     }
+ 
+/**
+ * <p> employee, pay period, percentage </p>
+ * @return 
+ */
     
     //Getters and Setters
     public Employee getEmployee() {
@@ -33,6 +46,11 @@ public class Absenteeism {
     public BigDecimal getPercentage() {
         return percentage;
     }
+    
+/**
+ * <p> Appending employee information </p>
+ * @return 
+ */
     
     //toString Method
     @Override

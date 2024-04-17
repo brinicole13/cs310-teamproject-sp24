@@ -1,5 +1,9 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
+/**
+ * <p> Private final int terminal id and numeric id <p>
+ * Private final string description
+ */
 public class Department {
     private final int terminalid;
     private final String description;
@@ -23,6 +27,9 @@ public class Department {
         return numericid;
     }
     
+/**
+ * <p> Append numericid and terminalid </p>
+ */
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();

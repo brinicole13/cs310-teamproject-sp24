@@ -3,7 +3,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
 
-// Punch class represents a time punch
+/**
+ * Punch class represents a time punch
+ */
 public class Punch {
     private Integer id; // Null for new punches
     private Integer terminalId;
@@ -13,7 +15,9 @@ public class Punch {
     private EventType punchType;
     private PunchAdjustmentType adjustmentType;
 
-    // Constructor for new punches
+/**
+ * Constructor for new punches 
+ * /
     public Punch(int terminalId, Badge badge, EventType punchType) {
         this.terminalId = terminalId;
         this.badge = badge;
@@ -22,7 +26,10 @@ public class Punch {
         originalTimestamp = originalTimestamp.withNano(0);
     }
 
-    // Constructor for existing punches
+/** 
+* Constructor for existing punches
+* 
+* /
     public Punch(int id, int terminalId, Badge badge, LocalDateTime originalTimestamp, EventType punchType) {
         this.id = id;
         this.terminalId = terminalId;
@@ -31,7 +38,10 @@ public class Punch {
         this.punchType = punchType;
     }
 
-    // Getters and Setters
+/**
+* Getters and Setters
+* 
+* /
     public Integer getId() {
         return id;
     }

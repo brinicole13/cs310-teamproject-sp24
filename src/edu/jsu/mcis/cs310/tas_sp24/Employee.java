@@ -2,6 +2,9 @@ package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * <p> There following variables below </p>
+ */
 public class Employee {
     //Create the needed variables
     private final String firstname;
@@ -14,7 +17,19 @@ public class Employee {
     private final Shift shift; 
     private final Department department; 
     
-    // Set variables to active versions
+
+/**Set variables to active versions
+ * 
+ * @param id
+ * @param firstName
+ * @param middleName
+ * @param lastName
+ * @param active
+ * @param badge
+ * @param department
+ * @param shift
+ * @param employeeType 
+ */
     public Employee(int id, String firstName, String middleName, String lastName,
     LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
         
@@ -29,7 +44,10 @@ public class Employee {
         this.department = department;
         
     }
-    //Get functions
+/**Get functions
+ * 
+ * @return 
+ */
     public String getFirstName(){
         return firstname;
     }
@@ -57,7 +75,11 @@ public class Employee {
     public Department getDepartment(){ 
         return department;
     }
-    
+
+/**
+ * 
+ * @return 
+ */    
  @Override
     public String toString() {
     StringBuilder s = new StringBuilder();

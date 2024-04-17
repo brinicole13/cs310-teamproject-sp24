@@ -1,7 +1,9 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 import java.util.zip.CRC32;
 
-
+/**
+ * <p> String id and String description </p>
+ */
 public class Badge {
 
     public final String id;
@@ -12,6 +14,10 @@ public class Badge {
         this.description = description;
     }
     
+/**
+ * <p> Constructor for badge to generate and the description </p>
+ * @param description 
+ */
     // New constructor for creating badge with generated ID
     public Badge(String description) {
         this.id = generateBadgeId(description);
@@ -25,7 +31,10 @@ public class Badge {
     public String getDescription() {
         return description;
     }
-
+/**
+ * <p> String builder to append id and description </p>
+ * @return 
+ */
     @Override
     public String toString() {
 

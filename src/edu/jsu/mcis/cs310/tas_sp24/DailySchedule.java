@@ -2,6 +2,9 @@ package edu.jsu.mcis.cs310.tas_sp24;
 import java.time.LocalTime;
 import java.util.HashMap;
 
+/**
+ * <p> class for Daily Schedule </p>
+ */
 public class DailySchedule{
     
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;
@@ -21,6 +24,10 @@ public class DailySchedule{
 
     }
     
+/**
+ * <p> Getters and Setters </p>
+ * @return 
+ */
     public LocalTime getShiftstart(){
         return shiftstart;
     }
