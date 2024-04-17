@@ -105,7 +105,7 @@ public final class DAOUtility {
         }
 
         if (shiftStop == null) {
-            LocalTime sStop = s.getShiftStop();
+            LocalTime sStop = s.getShiftstop();
             LocalDateTime ot = (LocalDateTime) dailypunchlist.get(0).getAdjustedTimestamp();
             
             shiftStop = ot.withHour(sStop.getHour()).withMinute(sStop.getMinute()).withSecond(0).withNano(0);
@@ -115,6 +115,7 @@ public final class DAOUtility {
 //        shiftDuration = Duration.between(shiftStart, shiftStop).toMinutes();
 
         if (shiftDuration > s.getLunchThreshold()) {
+          
             totalMinutes = shiftDuration - s.getLunchDuration().toMinutes();
         } else {
             totalMinutes = shiftDuration;
@@ -124,7 +125,6 @@ public final class DAOUtility {
     }
 
      public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchList, Shift shift) {
-        //Formula: A% = (Schedule − Worked  / Schedule) × 100
 
         double workedMinutes = calculateTotalMinutes(punchList, shift);
 
@@ -132,7 +132,7 @@ public final class DAOUtility {
         
         for(int i = 1; i <= 5; i++){
             
-            scheduledMinutes += ((shift.getDailySchedule(DayOfWeek.of(i)).getShiftDuration()) - (shift.getDailySchedule(DayOfWeek.of(i)).getLunchDuration()));
+            scheduledMinutes += ((shift.getDailySchedule(DayOfWeek.of(i)).getShiftduration()) - (shift.getDailySchedule(DayOfWeek.of(i)).getLunchduration()));
             
         }
         

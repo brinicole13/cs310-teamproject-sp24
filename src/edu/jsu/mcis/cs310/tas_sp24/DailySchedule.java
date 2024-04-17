@@ -5,20 +5,21 @@ import java.util.HashMap;
 public class DailySchedule{
     
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;
-    private final int roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private final int roundinterval, graceperiod, dockpenalty, lunchthreshold, shiftduration, lunchduration;
     
     
-    public DailySchedule(HashMap< String, String> map){
+    public DailySchedule(HashMap< String, String> hashmap){
         
-        this.shiftstart = LocalTime.parse(map.get("shiftstart"));
-        this.shiftstop = LocalTime.parse(map.get("shiftstop"));
-        this.roundinterval = Integer.parseInt(map.get("roundinterval"));
-        this.graceperiod = Integer.parseInt(map.get("graceperiod"));
-        this.dockpenalty = Integer.parseInt(map.get("dockpenalty"));
-        this.lunchstart = LocalTime.parse(map.get("lunchstart"));
-        this.lunchstop = LocalTime.parse(map.get("lunchstop"));
-        this.lunchthreshold = Integer.parseInt(map.get("lunchthreshold"));
-
+        this.shiftstart = LocalTime.parse(hashmap.get("shiftstart"));
+        this.shiftstop = LocalTime.parse(hashmap.get("shiftstop"));
+        this.roundinterval = Integer.parseInt(hashmap.get("roundinterval"));
+        this.graceperiod = Integer.parseInt(hashmap.get("graceperiod"));
+        this.dockpenalty = Integer.parseInt(hashmap.get("dockpenalty"));
+        this.lunchstart = LocalTime.parse(hashmap.get("lunchstart"));
+        this.lunchstop = LocalTime.parse(hashmap.get("lunchstop"));
+        this.lunchthreshold = Integer.parseInt(hashmap.get("lunchthreshold"));
+        this.shiftduration = Integer.parseInt(hashmap.get("shiftduration"));
+        this.lunchduration = Integer.parseInt(hashmap.get("lunchduration"));
     }
     
     public LocalTime getShiftstart(){
@@ -50,6 +51,12 @@ public class DailySchedule{
 
     public int getLunchthreshold() {
         return lunchthreshold;
+    }
+    public int getShiftduration(){
+        return shiftduration;
+    }
+    public int getLunchduration(){
+        return lunchduration;
     }
 
 }
