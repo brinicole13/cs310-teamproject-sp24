@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
+import edu.jsu.mcis.cs310.tas_sp24.DailySchedule;
 
 /**
  *
@@ -104,7 +105,7 @@ public final class DAOUtility {
         }
 
         if (shiftStop == null) {
-            LocalTime sStop = s.getStopTime();
+            LocalTime sStop = s.getShiftStop();
             LocalDateTime ot = (LocalDateTime) dailypunchlist.get(0).getAdjustedTimestamp();
             
             shiftStop = ot.withHour(sStop.getHour()).withMinute(sStop.getMinute()).withSecond(0).withNano(0);
@@ -122,15 +123,23 @@ public final class DAOUtility {
         return (int) totalMinutes;
     }
 
-    public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s) {
-        double minutesWorked = calculateTotalMinutes(punchlist, s);
+     public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchList, Shift shift) {
+        //Formula: A% = (Schedule − Worked  / Schedule) × 100
+
+        double workedMinutes = calculateTotalMinutes(punchList, shift);
+
+        double scheduledMinutes = 0;
         
-        double scheduledMinutes =s.getShiftDuration().toMinutes();
+        for(int i = 1; i <= 5; i++){
+            
+            scheduledMinutes += ((shift.getDailySchedule(DayOfWeek.of(i)).getShiftDuration()) - (shift.getDailySchedule(DayOfWeek.of(i)).getLunchDuration()));
+            
+        }
         
-        double absenteeism = 0;
+        double percentage = ((scheduledMinutes - workedMinutes)/scheduledMinutes)*100;
+
+        return BigDecimal.valueOf(percentage);
         
-        absenteeism = ((scheduledMinutes - minutesWorked) / scheduledMinutes) * 100;
-        
-        return BigDecimal.valueOf(absenteeism);
-    }    
+    }
+     
 }

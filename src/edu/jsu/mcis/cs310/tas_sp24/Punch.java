@@ -59,14 +59,14 @@ public class Punch {
     public void adjust (Shift s){
          //Set starting variables
         adjustedTimestamp = originalTimestamp;
-        int gracePeriod = s.getGracePeriod();
-        int roundInterval = s.getRoundInterval();
-        int dockPenalty = s.getDockPenalty();
+        int gracePeriod = s.getGraceperiod();
+        int roundInterval = s.getRoundinterval();
+        int dockPenalty = s.getDockpenalty();
            
-        var lunchstart = adjustedTimestamp.with(s.getLunchStart());
-        var lunchstop = adjustedTimestamp.with(s.getLunchStop());
-        var shiftstart = adjustedTimestamp.with(s.getShiftStart()); //Doing it this way prevents LocalTime conversion issues later on
-        var shiftstop = adjustedTimestamp.with(s.getShiftStop()); // Was returning chronounit error? until this method was used
+        var lunchstart = adjustedTimestamp.with(s.getLunchstart());
+        var lunchstop = adjustedTimestamp.with(s.getLunchstop());
+        var shiftstart = adjustedTimestamp.with(s.getShiftstart()); //Doing it this way prevents LocalTime conversion issues later on
+        var shiftstop = adjustedTimestamp.with(s.getShiftstop()); // Was returning chronounit error? until this method was used
         adjustedTimestamp = originalTimestamp;
            
         //If the punch is on the weekend
