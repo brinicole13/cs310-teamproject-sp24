@@ -147,13 +147,4 @@ public final class DAOUtility {
         return BigDecimal.valueOf(percentage);
         
     }
-     
-        for (int i = 1; i <= 5; i++) {
-            scheduledMinutes += ((Shift.getDailySchedule(DayOfWeek.of(i)).getShiftduration)) -(Shift.getDailySchedule(DayOfWeek.of(i)));
-        } 
-        
-        double percentage = ((scheduledMinutes - minutesWorked) / scheduledMinutes) * 100;
-        
-        return BigDecimal.valueOf(percentage);
-    }    
 }
