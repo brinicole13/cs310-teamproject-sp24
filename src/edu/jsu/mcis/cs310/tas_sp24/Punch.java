@@ -17,7 +17,7 @@ public class Punch {
 
 /**
  * <p> Constructor for new punches </p>
- * /
+ **/
     public Punch(int terminalId, Badge badge, EventType punchType) {
         this.terminalId = terminalId;
         this.badge = badge;
@@ -29,7 +29,7 @@ public class Punch {
 /** 
 * <p> Constructor for existing punches </p>
 * 
-* /
+**/
     public Punch(int id, int terminalId, Badge badge, LocalDateTime originalTimestamp, EventType punchType) {
         this.id = id;
         this.terminalId = terminalId;
@@ -41,7 +41,7 @@ public class Punch {
 /**
 * <p> Getters and Setters </p>
 * 
-* /
+**/
     public Integer getId() {
         return id;
     }
