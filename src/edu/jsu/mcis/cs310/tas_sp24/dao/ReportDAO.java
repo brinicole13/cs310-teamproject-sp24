@@ -251,7 +251,7 @@ public class ReportDAO {
                     DecimalFormat df = new DecimalFormat("0.00");
 
                     int totalMinutesWorked = DAOUtility.calculateTotalMinutes(punches, shift);
-                    int scheduledMinutes = shift.getscheduledMinutes();
+                    int scheduledMinutes = shift.getShiftDuration();
 
                     int regularMinutes = Math.min(totalMinutesWorked, scheduledMinutes);
                     int overtimeMinutes = Math.max(0, totalMinutesWorked - scheduledMinutes);
