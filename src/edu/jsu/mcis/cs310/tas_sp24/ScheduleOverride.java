@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * 
  * <p> public class for Schedule Override</p>
- */
+ **/
 public class ScheduleOverride {
     private int id;
     private LocalDateTime start, end;

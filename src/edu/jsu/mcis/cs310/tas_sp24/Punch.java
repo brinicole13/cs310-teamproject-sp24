@@ -5,7 +5,7 @@ import java.time.*;
 
 /**
  * Punch class represents a time punch
- */
+ **/
 public class Punch {
     private Integer id; // Null for new punches
     private Integer terminalId;

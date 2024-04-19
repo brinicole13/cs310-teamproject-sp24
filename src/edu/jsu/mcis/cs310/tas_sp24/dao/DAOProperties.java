@@ -25,7 +25,7 @@ public class DAOProperties {
 /**
  * 
  * @param prefix 
- */
+ **/
 
     public DAOProperties(String prefix) {
 
@@ -36,7 +36,7 @@ public class DAOProperties {
  * 
  * @param key
  * @return 
- */
+ **/
 
     public String getProperty(String key) {
 

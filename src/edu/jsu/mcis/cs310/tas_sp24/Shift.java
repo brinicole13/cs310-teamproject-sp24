@@ -6,7 +6,7 @@ import java.time.DayOfWeek;
 
 /**
  * <p> class shift </p>
- */
+ **/
 public class Shift {
     private int id;
     private String description;
@@ -24,7 +24,7 @@ public class Shift {
 /**
  * 
  * @return 
- */
+ **/
     public DailySchedule getDefaultschedule() {
         return defaultschedule;
     }
@@ -93,7 +93,7 @@ public class Shift {
 /**
  * 
  * @return 
- */
+ **/
     public int getLunchDuration() {
         
         int lunchstopminutes = (defaultschedule.getLunchstop().getHour() * 60) + defaultschedule.getLunchstop().getMinute();
@@ -116,7 +116,7 @@ public class Shift {
 /**
  * <p> Public to String </p>
  * Append
- */
+ **/
     public String toString(){
      
         StringBuilder s = new StringBuilder();

@@ -14,7 +14,7 @@ public final class DAOFactory {
 /**
  * 
  * @param prefix 
- */
+ **/
     public DAOFactory(String prefix) {
 
         DAOProperties properties = new DAOProperties(prefix);
@@ -34,7 +34,7 @@ public final class DAOFactory {
 /**
  * 
  * @return 
- */
+ **/
     Connection getConnection() {
         return conn;
     }

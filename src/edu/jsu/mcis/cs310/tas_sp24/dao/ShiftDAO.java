@@ -28,7 +28,7 @@ public class ShiftDAO {
  * 
  * @param id
  * @return 
- */
+ **/
     public Shift find(int id){
         Shift shift = null;
         PreparedStatement ps = null;
@@ -88,7 +88,7 @@ public class ShiftDAO {
  * 
  * @param badge
  * @return 
- */
+ **/
      public Shift find(Badge badge){
         Shift shift = null;
         DailyScheduleDAO defaultschedule = null;
@@ -147,7 +147,7 @@ public class ShiftDAO {
  * @param badge
  * @param localdate
  * @return 
- */
+ **/
       public Shift find(Badge badge, LocalDate localdate){
         Shift shift = null;
         DailyScheduleDAO defaultschedule = null;

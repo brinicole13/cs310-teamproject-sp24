@@ -17,7 +17,7 @@ public class DepartmentDAO {
  * 
  * @param numericid
  * @return 
- */
+ **/
     public Department find(int numericid){
         Department department = null;
         PreparedStatement ps = null;

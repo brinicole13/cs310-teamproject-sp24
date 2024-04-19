@@ -3,7 +3,7 @@ import java.util.zip.CRC32;
 
 /**
  * <p> String id and String description </p>
- */
+ **/
 public class Badge {
 
     public final String id;
@@ -17,7 +17,7 @@ public class Badge {
 /**
  * <p> Constructor for badge to generate and the description </p>
  * @param description 
- */
+ **/
     // New constructor for creating badge with generated ID
     public Badge(String description) {
         this.id = generateBadgeId(description);
@@ -34,7 +34,7 @@ public class Badge {
 /**
  * <p> String builder to append id and description </p>
  * @return 
- */
+ **/
     @Override
     public String toString() {
 

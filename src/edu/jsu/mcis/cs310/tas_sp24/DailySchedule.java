@@ -28,7 +28,7 @@ public class DailySchedule{
 /**
  * <p> Getters and Setters </p>
  * @return 
- */
+ **/
     public LocalTime getShiftstart(){
         return shiftstart;
     }

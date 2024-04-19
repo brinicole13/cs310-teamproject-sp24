@@ -33,7 +33,7 @@ public class Absenteeism {
  * <p> employee, pay period, percentage </p>
  * 
  * @return 
- */
+ **/
     
     //Getters and Setters
     public Employee getEmployee() {
@@ -51,7 +51,7 @@ public class Absenteeism {
 /**
  * <p> Appending employee information </p>
  * @return 
- */
+ **/
     
     //toString Method
     @Override

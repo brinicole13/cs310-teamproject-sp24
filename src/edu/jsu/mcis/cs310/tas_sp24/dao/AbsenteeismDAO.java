@@ -29,7 +29,7 @@ public class AbsenteeismDAO {
      * @param employee
      * @param payperiod
      * @return A Absenteeism object for the given employee.
-     */
+     **/
     
     public Absenteeism find(Employee employee, LocalDate payperiod) {
         Absenteeism absenteeism = null;
@@ -87,7 +87,7 @@ public class AbsenteeismDAO {
     /**
      * Inserts a new Absenteeism object into the absenteeism table.
      * @param absenteeism 
-     */
+     **/
 
     public void create(Absenteeism absenteeism) {
 

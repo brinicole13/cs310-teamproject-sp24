@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * <p> There following variables below </p>
- */
+ **/
 public class Employee {
     //Create the needed variables
     private final String firstname;
@@ -29,7 +29,7 @@ public class Employee {
  * @param department
  * @param shift
  * @param employeeType 
- */
+ **/
     public Employee(int id, String firstName, String middleName, String lastName,
     LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType){
         
@@ -47,7 +47,7 @@ public class Employee {
 /**Get functions
  * 
  * @return 
- */
+ **/
     public String getFirstName(){
         return firstname;
     }
@@ -79,7 +79,7 @@ public class Employee {
 /**
  * 
  * @return 
- */    
+ **/    
  @Override
     public String toString() {
     StringBuilder s = new StringBuilder();

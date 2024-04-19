@@ -93,7 +93,7 @@ public class EmployeeDAO {
  * 
  * @param badge
  * @return 
- */
+ **/
     public Employee find(Badge badge) {
         Employee employee = null;
 
