@@ -15,7 +15,11 @@ public class ScheduleOverrideDAO {
     public ScheduleOverrideDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-    
+/**
+ * 
+ * @param localdate
+ * @return 
+ */
     public ScheduleOverride find(LocalDate localdate){
         ScheduleOverride scheduleoverride = null;
         PreparedStatement ps = null;

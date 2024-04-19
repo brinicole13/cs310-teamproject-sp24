@@ -14,12 +14,16 @@ import edu.jsu.mcis.cs310.tas_sp24.Department;
 import java.time.LocalDateTime;
 
 public class EmployeeDAO {
-
+    
     private static final String QUERY_FIND_ID = "SELECT * FROM employee WHERE id = ?";
     private static final String QUERY_FIND_BADGE = "SELECT * FROM employee WHERE badgeid = ?";
 
     private final DAOFactory daoFactory;
 
+/**
+ * 
+ * @param daoFactory 
+ */
     EmployeeDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
@@ -85,6 +89,11 @@ public class EmployeeDAO {
         }
         return employee;
     }
+/**
+ * 
+ * @param badge
+ * @return 
+ */
     public Employee find(Badge badge) {
         Employee employee = null;
 

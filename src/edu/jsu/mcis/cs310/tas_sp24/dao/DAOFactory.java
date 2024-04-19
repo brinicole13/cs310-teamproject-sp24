@@ -11,7 +11,10 @@ public final class DAOFactory {
     private final String url, username, password;
     
     private Connection conn = null;
-
+/**
+ * 
+ * @param prefix 
+ */
     public DAOFactory(String prefix) {
 
         DAOProperties properties = new DAOProperties(prefix);
@@ -28,6 +31,10 @@ public final class DAOFactory {
 
     }
 
+/**
+ * 
+ * @return 
+ */
     Connection getConnection() {
         return conn;
     }

@@ -16,7 +16,7 @@ public class Punch {
     private PunchAdjustmentType adjustmentType;
 
 /**
- * Constructor for new punches 
+ * <p> Constructor for new punches </p>
  * /
     public Punch(int terminalId, Badge badge, EventType punchType) {
         this.terminalId = terminalId;
@@ -27,7 +27,7 @@ public class Punch {
     }
 
 /** 
-* Constructor for existing punches
+* <p> Constructor for existing punches </p>
 * 
 * /
     public Punch(int id, int terminalId, Badge badge, LocalDateTime originalTimestamp, EventType punchType) {
@@ -39,7 +39,7 @@ public class Punch {
     }
 
 /**
-* Getters and Setters
+* <p> Getters and Setters </p>
 * 
 * /
     public Integer getId() {
@@ -102,7 +102,7 @@ public class Punch {
                 adjustedTimestamp = adjustedTimestamp.withMinute(adjustedTimestamp.getMinute() / roundInterval * roundInterval);
                 adjustedTimestamp = adjustedTimestamp.withSecond(adjustedTimestamp.getSecond() / intInSec * intInSec);
              }
-             //Round up in hour
+            //Round up in hour
             else{ 
                 punchMin = (Math.round(punchMin/roundInterval) * roundInterval)+ roundInterval;
                 adjustedTimestamp = adjustedTimestamp.withMinute(punchMin);

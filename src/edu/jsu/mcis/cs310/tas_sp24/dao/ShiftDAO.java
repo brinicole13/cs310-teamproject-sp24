@@ -24,7 +24,11 @@ public class ShiftDAO {
     public ShiftDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-
+/**
+ * 
+ * @param id
+ * @return 
+ */
     public Shift find(int id){
         Shift shift = null;
         PreparedStatement ps = null;
@@ -80,7 +84,11 @@ public class ShiftDAO {
         }
         return shift;
     }
-    
+/**
+ * 
+ * @param badge
+ * @return 
+ */
      public Shift find(Badge badge){
         Shift shift = null;
         DailyScheduleDAO defaultschedule = null;
@@ -134,7 +142,12 @@ public class ShiftDAO {
         }
         return shift;
     }
-     
+/**
+ * 
+ * @param badge
+ * @param localdate
+ * @return 
+ */
       public Shift find(Badge badge, LocalDate localdate){
         Shift shift = null;
         DailyScheduleDAO defaultschedule = null;

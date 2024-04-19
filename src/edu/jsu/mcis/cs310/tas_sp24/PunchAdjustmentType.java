@@ -1,5 +1,9 @@
 package edu.jsu.mcis.cs310.tas_sp24;
 
+/**
+ * 
+ * enum for PunchAdjustmentType
+ */
 public enum PunchAdjustmentType {
 
     NONE("None"),

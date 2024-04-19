@@ -13,7 +13,11 @@ public class DepartmentDAO {
     DepartmentDAO(DAOFactory daoFactory){
         this.daoFactory = daoFactory;
     }
-    
+/**
+ * 
+ * @param numericid
+ * @return 
+ */
     public Department find(int numericid){
         Department department = null;
         PreparedStatement ps = null;

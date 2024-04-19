@@ -5,13 +5,17 @@ import java.util.HashMap;
 
 
 
-
+/**
+ * 
+ * <p> public class for Schedule Override</p>
+ */
 public class ScheduleOverride {
     private int id;
     private LocalDateTime start, end;
     private DayOfWeek day;
     private DailySchedule dailyschedule;
     private Badge badge;
+    
     
     public ScheduleOverride(HashMap<String, Object> map) {
         this.id = Integer.parseInt((String) (map.get("id")));
@@ -22,7 +26,10 @@ public class ScheduleOverride {
         this.dailyschedule = (DailySchedule)map.get("dailyschedule");
         
     }
-
+/**
+ * 
+ * @return 
+ */
     public LocalDateTime getStart() {
         return start;
     }

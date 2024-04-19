@@ -22,12 +22,21 @@ public class DAOProperties {
         }
 
     }
+/**
+ * 
+ * @param prefix 
+ */
 
     public DAOProperties(String prefix) {
 
         this.prefix = prefix;
 
     }
+/**
+ * 
+ * @param key
+ * @return 
+ */
 
     public String getProperty(String key) {
 

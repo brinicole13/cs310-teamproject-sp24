@@ -19,7 +19,10 @@ public class PunchDAO{
 
     private final DAOFactory daoFactory;
 
-    // constructor
+/**
+ * 
+ * @param daoFactory 
+ */
     PunchDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }

@@ -47,6 +47,12 @@ public final class DAOUtility {
         return json;
 
     }
+/**
+ * 
+ * @param dailypunchlist
+ * @param s
+ * @return 
+ */
 
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift s) {
         long totalMinutes = 0;

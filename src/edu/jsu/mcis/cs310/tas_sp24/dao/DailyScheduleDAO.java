@@ -13,7 +13,11 @@ public class DailyScheduleDAO {
     public DailyScheduleDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-      
+/**
+ * 
+ * @param id
+ * @return 
+ */
      public DailySchedule find(int id){
         DailySchedule dailyschedule = null;
         PreparedStatement ps = null;

@@ -7,10 +7,7 @@ package edu.jsu.mcis.cs310.tas_sp24.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author rijeshpulami
- */
+
 class JSONValue {
 
     static String toJSONString(ArrayList<HashMap<String, String>> jsonData) {

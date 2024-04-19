@@ -4,7 +4,9 @@ import java.time.*;
 import java.util.HashMap;
 import java.time.DayOfWeek;
 
-
+/**
+ * <p> class shift </p>
+ */
 public class Shift {
     private int id;
     private String description;
@@ -19,7 +21,10 @@ public class Shift {
         this.schedule = (HashMap<Integer, DailySchedule>)hashmap.get("schedule");
        
     }
-   
+/**
+ * 
+ * @return 
+ */
     public DailySchedule getDefaultschedule() {
         return defaultschedule;
     }
@@ -85,7 +90,10 @@ public class Shift {
         return endDate;
     }
     
-    
+/**
+ * 
+ * @return 
+ */
     public int getLunchDuration() {
         
         int lunchstopminutes = (defaultschedule.getLunchstop().getHour() * 60) + defaultschedule.getLunchstop().getMinute();
@@ -105,7 +113,10 @@ public class Shift {
     }
 
     @Override
-
+/**
+ * <p> Public to String </p>
+ * Append
+ */
     public String toString(){
      
         StringBuilder s = new StringBuilder();

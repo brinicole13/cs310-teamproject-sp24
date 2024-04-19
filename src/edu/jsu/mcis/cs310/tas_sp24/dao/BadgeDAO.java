@@ -16,7 +16,11 @@ public class BadgeDAO {
         this.daoFactory = daoFactory;
 
     }
-
+/**
+ * 
+ * @param id
+ * @return 
+ */
     public Badge find(String id) {
 
         Badge badge = null;
